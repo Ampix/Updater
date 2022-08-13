@@ -1,0 +1,26 @@
+{
+  "name": "ampixupdater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ampix/Updater.git"
+  },
+  "author": "HVCsano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ampix/Updater/issues"
+  },
+  "homepage": "https://github.com/Ampix/Updater#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "ejs-electron": "^2.1.1",
+    "electron": "^20.0.2",
+    "electron-builder": "^23.3.3",
+    "electron-updater": "^5.2.1"
+  }
+}
