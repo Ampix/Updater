@@ -1,0 +1,29 @@
+<%- include('temps/main.ejs') %>
+<main class="img1">
+      <section class="banner">
+            <div class="container upper left">
+                  <h1 class="spectext">Program Frissitése</h1>
+                  <h2 class="spectext">Jelenlegi verzió: <%= version %></h2>
+                  <h2 class="spectext">A frissitések automatikusan letöltödnek és újraindításkor aktiválásra kerülnek.</h2>
+                  
+                      <div id="messages" style="color:cyan"></div>
+                  
+                      <div class="w3-light-grey">
+                        <div class="w3-blue" style="height:24px;width:0%" id="progressBar"></div>
+                      </div>
+                  
+                    </div>
+            </div>
+      </section>
+</main>
+  <script>
+      
+      // Listen for messages
+      const {ipcRenderer} = require('electron');
+      ipcRenderer.on('message', function(event, text) {
+        var container = document.getElementById('messages');
+        var message = document.createElement('div');
+        message.innerHTML = text;
+        container.appendChild(message);
+      })
+  </script>
