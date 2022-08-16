@@ -1,0 +1,14 @@
+@use '../datas/assets' as *;
+
+::-webkit-scrollbar {
+      width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+      background-color: $dark;
+}
+
+::-webkit-scrollbar-thumb {
+      background-color: $primary;
+      border-radius: 99px;
+}

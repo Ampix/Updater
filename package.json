@@ -1,14 +1,18 @@
 {
   "name": "ampixupdater",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "run-p electron sass",
+    "electron": "nodemon --watch . --exec \"electron .\" -e js,html,ejs,scss",
+    "dist": "electron-builder --win",
+    "publish": "set GH_TOKEN=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 && electron-builder --win --publish always",
+    "sass": "sass -w scss:src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ampix/Updater.git"
+    "url": "git+https://github.com/Ampix/Updater-Release.git"
   },
   "author": "HVCsano",
   "license": "ISC",
@@ -19,8 +23,13 @@
   "dependencies": {
     "ejs": "^3.1.8",
     "ejs-electron": "^2.1.1",
+    "electron-updater": "^5.2.1",
+    "nodemon": "^2.0.19",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.54.4"
+  },
+  "devDependencies": {
     "electron": "^20.0.2",
-    "electron-builder": "^23.3.3",
-    "electron-updater": "^5.2.1"
+    "electron-builder": "^23.3.3"
   }
 }

@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Silkscreen", cursive;
+}
+
+body {
+  background-color: #333;
+}
+
+.center {
+  position: absolute;
+  left: 50%; /* relative to nearest positioned ancestor or body element */
+  top: 50%; /*  relative to nearest positioned ancestor or body element */
+  transform: translate(-50%, -50%); /* relative to element's height & width */
+}
+
+.first {
+  top: 20%;
+  position: absolute;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 128px;
+  padding-right: 128px;
+}
+
+.spectext {
+  text-shadow: 2.5px 2.5px 7.5px #d60000;
+}
+
+.img1 {
+  background-image: url("assets/bgimg1.png");
+  background-repeat: no-repeat;
+}
+
+::selection {
+  background-color: #d60000;
+}
+
+.version-text {
+  position: absolute;
+  color: white;
+  top: 52.5px;
+  left: 35px;
+  z-index: 99;
+}
+
+main section.banner {
+  color: white;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+main section.banner .container {
+  width: 100%;
+}
+main section.banner .container h1 {
+  font-size: 72px;
+}
+
+.cyanbox {
+  background-color: cyan;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20%;
+  border-radius: 100vmax;
+  text-shadow: 1px 1px 1px black;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d60000;
+  border-radius: 99px;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: rgba(17, 17, 17, 0.95);
+  padding: 16px 32px;
+  border-bottom: 3px solid #d60000;
+}
+
+.nav-menu {
+  display: flex;
+  flex: 1 1 0%;
+  justify-content: flex-end;
+  margin: 0 -16px;
+}
+.nav-menu a {
+  color: white;
+  margin: 0 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.4s;
+  padding: 8px 16px;
+  border-radius: 99px;
+  background-color: #d60000;
+}
+.nav-menu a:hover {
+  background-color: #8e0000;
+}
+
+.nav-text {
+  color: white;
+  font-size: 35px;
+  letter-spacing: 2px;
+}
+
+.cp {
+  background-color: #222;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  text-shadow: 0px 0px 25px #d60000;
+}
+
+/*# sourceMappingURL=style.css.map */
