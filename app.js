@@ -25,9 +25,12 @@ ipcMain.on('selectdirbuilders', function() {
 
 ipcMain.on( "setupdateinfo", ( event, myGlobalVariableValue ) => {
   global.updateinfo = myGlobalVariableValue;
-  console.log(myGlobalVariableValue)
   win.webContents.send('updateinfo', (myGlobalVariableValue))
-} );
+});
+
+ipcMain.on( "giveupdateinfo", () => {
+  win.webContents.send('updateinfo', (global.updateinfo))
+});
 
 function createWindow () {
       win = new BrowserWindow({
@@ -76,7 +79,7 @@ function createWindow () {
     })
     
     autoUpdater.on('update-not-available', (info) => {
-      win.webContents.send( "setupdateinfo", "Nincs új frissités" );
+      win.webContents.send( "setupdateinfo", "" );
     })
     
     autoUpdater.on('error', (err) => {
