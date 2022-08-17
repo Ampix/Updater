@@ -4,7 +4,7 @@
             <div class="container upper left">
                   <h1 class="spectext">Updater Frissitése</h1>
                   <h2 class="spectext">Jelenlegi verzió: <%= version %></h2>
-                  <h2 class="spectext">A frissitések automatikusan letöltödnek és újraindításkor aktiválásra kerülnek.</h2>
+                  <h2 class="spectext" id="update">...</h2>
                   <h2 class="spectext szunetfent">További információ lentebb</h2>
                   
                       <div id="messages" style="color:cyan"></div>
@@ -25,14 +25,4 @@
   <h3>- Szebb dizájn</h3>
   <h2 class="kisszunetfent warning">A MODPACKEK FRISSITÉSEINEK NINCS KÖZE A LAUNCHERHEZ VAGY ANNAK A FRISSITÉSEIHEZ</h2>
 </div>
-  <script>
-      
-      // Listen for messages
-      const {ipcRenderer} = require('electron');
-      ipcRenderer.on('message', function(event, text) {
-        var container = document.getElementById('messages');
-        var message = document.createElement('div');
-        message.innerHTML = text;
-        container.appendChild(message);
-      })
-  </script>
+<script src="assets/scripts/update.js"></script>
