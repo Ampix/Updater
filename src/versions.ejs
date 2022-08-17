@@ -1,1 +1,20 @@
 <%- include('temps/main.ejs') %>
+<main class="img1">
+      <section class="banner">
+            <div class="container upper left">
+                  <h1 class="spectext">Tudnivalók</h1>
+                  <h2 class="spectext">Miután kiválasztottad a mappát onnantól kezdve abba a mappába fogja rakni a mods és a többi dolgot!</h2>
+                  <h3 class="spectext">Lehetőleg (a .minecraft mappát vagy) egy olyan mappát válassz ahova már fel van telepítve a megfelelő forge verzió!</h3>
+            </div>
+      </section>
+</main>
+<div class="basebox">
+      <h1 class="spectext">Ampix Builders</h1>
+      <h2>Forge Verzió: 1.18.2, 40.1.60</h2>
+      <h2>Kiválasztott mappa:</h2>
+      <h2 id="builders">...</h2>
+      <h2 id="version" class="hide">...</h2>
+      <h2 id="newversion" class="hide">...</h2>
+     <button onclick='openDir("builders")' class="secdir">Mappa kiválasztása</button>
+</div>
+<script src="assets/scripts/versions.js"></script>

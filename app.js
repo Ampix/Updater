@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, dialog, ipcMain} = require('electron')
 const path = require('path')
 const ejse = require('ejs-electron')
 const { autoUpdater } = require("electron-updater")
@@ -7,14 +7,34 @@ const dispatch = (data) => {
   win.webContents.send('message', data)
 }
 
+//hold the array of directory paths selected by user
+
+let dir
+
+ipcMain.on('selectdirbuilders', function() {
+  dir = dialog.showOpenDialog(win, {
+    title: "Válasszad má' ki!", 
+    properties: ['openDirectory']
+  }).then(result => {
+    if(result.canceled) return
+    let tipo = "builders"
+    let mappa = {
+      tipo: "builders",
+      folder: result.filePaths[0]
+    }
+    win.webContents.send('selectdirback', (tipo,mappa));
+  })
+})
+
 function createWindow () {
       win = new BrowserWindow({
         width: 1200,
         height: 750,
         resizable: false,
+        autoHideMenuBar: true,
         icon: "src/assets/icon.png",
         webPreferences: {
-          preload: path.join(__dirname, 'preload.js', 'src', "temps", "assets"),
+          preload: path.join(app.getAppPath(), 'preload.js'),
           nodeIntegration: true,
           contextIsolation: false
         },
@@ -23,7 +43,6 @@ function createWindow () {
     
       win.loadFile('src/home.ejs')
       ejse.data("version", app.getVersion())
-      win.removeMenu()
     }
 
     app.whenReady().then(() => {
