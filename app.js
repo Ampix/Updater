@@ -61,28 +61,30 @@ function createWindow () {
       }
     })
     autoUpdater.on('checking-for-update', () => {
-      sendStatusToWindow('Checking for update...')
+      win.webContents.send('checkforupdate');
     })
     
     autoUpdater.on('update-available', (info) => {
-      sendStatusToWindow('Update available.')
+      win.webContents.send('hasupdate')
     })
     
     autoUpdater.on('update-not-available', (info) => {
-      sendStatusToWindow('Update not available.')
+      win.webContents.send('noupdate')
     })
     
     autoUpdater.on('error', (err) => {
-      sendStatusToWindow('Error in auto-updater. ' + err)
+      let tipo
+      win.webContents.send('error', (tipo, err))
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
-      let log_message = "Download speed: " + progressObj.bytesPerSecond;
+      let tipo
+      let log_message = "Sebesség: " + progressObj.bytesPerSecond;
       log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
       log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-      sendStatusToWindow(log_message);
+      win.webContents.send('updatedown', (tipo, log_message))
     })
     
     autoUpdater.on('update-downloaded', (info) => {
-      sendStatusToWindow('Update downloaded');
+      win.webContents.send('updatedone');
     });
