@@ -36,3 +36,5 @@ function load(){
 }
 
 load()
+
+document.getElementById("tsesz").innerHTML = "hihi"

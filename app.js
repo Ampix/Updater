@@ -3,9 +3,6 @@ const path = require('path')
 const ejse = require('ejs-electron')
 const { autoUpdater } = require("electron-updater")
 let win
-const dispatch = (data) => {
-  win.webContents.send('message', data)
-}
 
 //hold the array of directory paths selected by user
 
@@ -26,12 +23,19 @@ ipcMain.on('selectdirbuilders', function() {
   })
 })
 
+ipcMain.on( "setupdateinfo", ( event, myGlobalVariableValue ) => {
+  global.updateinfo = myGlobalVariableValue;
+  console.log(myGlobalVariableValue)
+  win.webContents.send('updateinfo', (myGlobalVariableValue))
+} );
+
 function createWindow () {
       win = new BrowserWindow({
         width: 1200,
         height: 750,
         resizable: false,
-        autoHideMenuBar: true,
+        enableRemoteModule: true,
+        //autoHideMenuBar: true,
         icon: "src/assets/icon.png",
         webPreferences: {
           preload: path.join(app.getAppPath(), 'preload.js'),
@@ -42,12 +46,15 @@ function createWindow () {
       })
     
       win.loadFile('src/home.ejs')
+      win.removeMenu()
+      //win.webContents.openDevTools()
       ejse.data("version", app.getVersion())
     }
 
     app.whenReady().then(() => {
       createWindow()
-      autoUpdater.checkForUpdatesAndNotify()    
+      
+      autoUpdater.checkForUpdates()    
       app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
           createWindow()
@@ -61,30 +68,28 @@ function createWindow () {
       }
     })
     autoUpdater.on('checking-for-update', () => {
-      win.webContents.send('checkforupdate');
+      win.webContents.send( "setupdateinfo", "Frissités keresése..." );
     })
     
     autoUpdater.on('update-available', (info) => {
-      win.webContents.send('hasupdate')
+      win.webContents.send( "setupdateinfo", "Frissités találva" );
     })
     
     autoUpdater.on('update-not-available', (info) => {
-      win.webContents.send('noupdate')
+      win.webContents.send( "setupdateinfo", "Nincs új frissités" );
     })
     
     autoUpdater.on('error', (err) => {
-      let tipo
-      win.webContents.send('error', (tipo, err))
+      win.webContents.send( "setupdateinfo", "Hiba: " + err );
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
-      let tipo
       let log_message = "Sebesség: " + progressObj.bytesPerSecond;
-      log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+      log_message = log_message + ' - Letöltve ' + progressObj.percent + '%';
       log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-      win.webContents.send('updatedown', (tipo, log_message))
+      win.webContents.send( "setupdateinfo", "Letöltés " + log_message );
     })
     
     autoUpdater.on('update-downloaded', (info) => {
-      win.webContents.send('updatedone');
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, indítsd újra a telepítéshez.");
     });
