@@ -1,4 +1,3 @@
-const ipcRenderer = require('electron').ipcRenderer;
 let dirs = {
       builders: "nincs",
       red: "nincs"
@@ -36,5 +35,3 @@ function load(){
 }
 
 load()
-
-document.getElementById("tsesz").innerHTML = "hihi"

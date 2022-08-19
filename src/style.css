@@ -137,23 +137,6 @@ main section.banner .container h1 {
   text-shadow: 1px 1px 1px black;
 }
 
-.secdir {
-  background-color: #111;
-  color: white;
-  padding: 10px;
-  font-size: larger;
-  margin-top: 5px;
-  border-radius: 100vmax;
-  transition: 0.5s;
-  border: white 5px solid;
-  box-shadow: 0px 0px 5px 1px black;
-}
-
-.secdir:hover {
-  cursor: pointer;
-  background-color: #d60000;
-}
-
 .szunetfent {
   margin-top: 50px;
 }
@@ -185,6 +168,23 @@ main section.banner .container h1 {
 .warning {
   color: red;
   text-shadow: 0px 0px 5px #8e0000 !important;
+}
+
+.specbutton {
+  background-color: #d60000;
+  color: white;
+  padding: 10px;
+  font-size: larger;
+  margin-top: 5px;
+  border-radius: 10px;
+  transition: 0.5s;
+  border: white 0.125em solid;
+  box-shadow: 0px 0px 5px 1px black;
+}
+
+.specbutton:hover {
+  cursor: pointer;
+  background-color: #8e0000;
 }
 
 /*# sourceMappingURL=style.css.map */
