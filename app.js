@@ -88,11 +88,10 @@ function createWindow () {
     
     autoUpdater.on('download-progress', (progressObj) => {
       let log_message = "Sebesség: " + progressObj.bytesPerSecond;
-      log_message = log_message + ' - Letöltve ' + progressObj.percent + '%';
       log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
       win.webContents.send( "setupdateinfo", "Letöltés " + log_message );
     })
     
     autoUpdater.on('update-downloaded', (info) => {
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, indítsd újra a telepítéshez.");
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, zárd be a telepítéshez.");
     });
