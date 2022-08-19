@@ -87,8 +87,7 @@ function createWindow () {
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
-      let log_message = "Sebesség: " + progressObj.bytesPerSecond;
-      log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+      let log_message = ' (' + progressObj.transferred + " Byte " + "/ " + progressObj.total + " Byte" + ')';
       win.webContents.send( "setupdateinfo", "Letöltés " + log_message );
     })
     
