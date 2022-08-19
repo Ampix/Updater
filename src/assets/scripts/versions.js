@@ -103,11 +103,12 @@ async function loadup(type){
             })
             await sleep(500)
             show("selecodirb")
+            show("delpackb")
             hide("selecdirb")
             if(stat.builders == "empty"){
                   show("downloadpackb")
             }else if(stat.builders == "onlydel"){
-                  show("delpackb")
+                  
             }else if(vers.builders_local != vers.builders_online){
                   show("updatepackb")
                   updatetext("status","builders", "Frissités elérhető!")
