@@ -60,7 +60,7 @@ function updatetext(type, what, to){
             if(what == "builders"){
                   document.getElementById("statusb").classList.add("warning")
                   document.getElementById("statusb").classList.remove("spectext")
-                  document.getElementById("statusb").innerHTML = "Hiba: " + to
+                  document.getElementById("statusb").innerHTML = to
                   show("statusb")
             }
             
