@@ -1,22 +1,5 @@
 @use '../datas/assets' as *;
 
-.secdir {
-      background-color: #111;
-      color: white;
-      padding: 10px;
-      font-size: larger;
-      margin-top: 5px;
-      border-radius: 100vmax;
-      transition: 0.5s;
-      border: white 5px solid;
-      box-shadow: 0px 0px 5px 1px black;
-}
-
-.secdir:hover {
-      cursor: pointer;
-      background-color: $primary;
-}
-
 .szunetfent {
       margin-top: 50px;
 }

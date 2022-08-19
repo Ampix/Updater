@@ -1,0 +1,18 @@
+@use '../datas/assets' as *;
+
+.specbutton {
+      background-color: $primary;
+      color: white;
+      padding: 10px;
+      font-size: larger;
+      margin-top: 5px;
+      border-radius: 10px;
+      transition: 0.5s;
+      border: white .125em solid;
+      box-shadow: 0px 0px 5px 1px black;
+}
+
+.specbutton:hover {
+      cursor: pointer;
+      background-color: $primary-dark;
+}

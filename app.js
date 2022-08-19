@@ -3,6 +3,7 @@ const path = require('path')
 const ejse = require('ejs-electron')
 const { autoUpdater } = require("electron-updater")
 let win
+let updatestat = ""
 
 //hold the array of directory paths selected by user
 
@@ -23,13 +24,13 @@ ipcMain.on('selectdirbuilders', function() {
   })
 })
 
-ipcMain.on( "setupdateinfo", ( event, myGlobalVariableValue ) => {
-  global.updateinfo = myGlobalVariableValue;
-  win.webContents.send('updateinfo', (myGlobalVariableValue))
+ipcMain.on( "setupdateinfo", ( event, value ) => {
+  updatestat = value;
+  win.webContents.send('updateinfo', (value))
 });
 
 ipcMain.on( "giveupdateinfo", () => {
-  win.webContents.send('updateinfo', (global.updateinfo))
+  win.webContents.send('updateinfo', (updatestat))
 });
 
 function createWindow () {
@@ -37,8 +38,7 @@ function createWindow () {
         width: 1200,
         height: 750,
         resizable: false,
-        enableRemoteModule: true,
-        //autoHideMenuBar: true,
+        autoHideMenuBar: true,
         icon: "src/assets/icon.png",
         webPreferences: {
           preload: path.join(app.getAppPath(), 'preload.js'),
@@ -49,7 +49,7 @@ function createWindow () {
       })
     
       win.loadFile('src/home.ejs')
-      win.removeMenu()
+      //win.removeMenu()
       //win.webContents.openDevTools()
       ejse.data("version", app.getVersion())
     }
