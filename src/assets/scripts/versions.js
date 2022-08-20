@@ -140,31 +140,26 @@ function otherDir(size, type){
       }
 }
 
-function updatepack(what,type){
-      if(what == "update"){
-            if(type == "builders"){
-                  fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-                  fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
-                  fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
-            } 
-      }
+function updatepack(type){
       if(type == "builders"){
-                  const loc = dirs.builders
-                  updatetext("status","builders", "Letöltés...")
-                  request('https://cdn.ampix.hu/builders/base.zip')
-                  .pipe(fs.createWriteStream(loc + '\\base.zip'))
-                  .on('close', async function () {
-                        updatetext("status","builders", "Kicsomagolás...")
-                        decompress(loc+'\\base.zip', loc+'\\').then(async files => {
-                              fs.rmSync(loc + "\\base.zip", { force: true })
-                              updatetext("status","builders", "Kész!")
-                              await sleep(2000)
-                              otherDir("je", "builders")
-                        });
+            const loc = dirs.builders
+            fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
+            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
+            fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
+            updatetext("status","builders", "Letöltés...")
+            request('https://cdn.ampix.hu/builders/base.zip')
+            .pipe(fs.createWriteStream(loc + '\\base.zip'))
+            .on('close', async function () {
+                  updatetext("status","builders", "Kicsomagolás...")
+                  decompress(loc+'\\base.zip', loc+'\\').then(async files => {
+                        fs.rmSync(loc + "\\base.zip", { force: true })
+                        updatetext("status","builders", "Kész!")
+                        await sleep(2000)
+                        otherDir("je", "builders")
                   });
+            });
       }
 }
-
 async function delpack(type){
       if(type == "builders"){
             fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
