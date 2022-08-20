@@ -38,7 +38,7 @@ function createWindow () {
         width: 1200,
         height: 750,
         resizable: false,
-        //autoHideMenuBar: true,
+        autoHideMenuBar: true,
         icon: "src/assets/icon.png",
         webPreferences: {
           preload: path.join(app.getAppPath(), 'preload.js'),
@@ -49,7 +49,7 @@ function createWindow () {
       })
     
       win.loadFile('src/home.ejs')
-      win.removeMenu()
+      //win.removeMenu()
       //win.webContents.openDevTools()
       ejse.data("version", app.getVersion())
     }

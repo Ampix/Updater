@@ -143,9 +143,10 @@ function otherDir(size, type){
 function updatepack(type){
       if(type == "builders"){
             const loc = dirs.builders
-            fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
+            fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true })
+            fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true })
+            fs.rmSync(loc + "\\mods", { recursive: true, force: true })
+            fs.rmSync(loc + "\\base.zip", { recursive: true, force: true })
             updatetext("status","builders", "Letöltés...")
             request('https://cdn.ampix.hu/builders/base.zip')
             .pipe(fs.createWriteStream(loc + '\\base.zip'))
@@ -165,6 +166,7 @@ async function delpack(type){
             fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
             fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
             fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
+            fs.rmSync(dirs.builders + "\\base.zip", { recursive: true, force: true })
             updatetext("statuswarn","builders", "Modpack sikeresen kitörölve.")
             await sleep(1500)
             otherDir("je","builders")
