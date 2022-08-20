@@ -143,7 +143,7 @@ function otherDir(size, type){
 function updatepack(what,type){
       if(what == "update"){
             fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\config", { recursive: true, force: true })
+            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
             fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
       }
       if(type == "builders"){
@@ -166,7 +166,7 @@ function updatepack(what,type){
 async function delpack(type){
       if(type == "builders"){
             fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\config", { recursive: true, force: true })
+            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
             fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
             updatetext("statuswarn","builders", "Modpack sikeresen kitörölve.")
             await sleep(1500)
