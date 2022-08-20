@@ -142,9 +142,11 @@ function otherDir(size, type){
 
 function updatepack(what,type){
       if(what == "update"){
-            fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
+            if(type == "builders"){
+                  fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
+                  fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
+                  fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
+            } 
       }
       if(type == "builders"){
                   const loc = dirs.builders
