@@ -121,7 +121,7 @@ main section.banner .container h1 {
 }
 
 .basebox {
-  background-color: #005b6d;
+  background-color: #292929;
   align-items: center;
   text-align: center;
   color: white;
@@ -135,6 +135,20 @@ main section.banner .container h1 {
   border: 5px solid white;
   box-shadow: 0px 0px 10px 5px #d60000;
   text-shadow: 1px 1px 1px black;
+}
+
+.twigmod2box {
+  background-image: url("assets/logos/twigmod2.png");
+  background-repeat: no-repeat;
+  background-size: 250px;
+  background-position: center;
+}
+
+.builderbox {
+  background-image: url("assets/logos/ampixbuilders.png");
+  background-repeat: no-repeat;
+  background-size: 250px;
+  background-position: center;
 }
 
 .szunetfent {
@@ -171,7 +185,7 @@ main section.banner .container h1 {
 }
 
 .specbutton {
-  background-color: #d60000;
+  background-color: rgba(214, 0, 0, 0.5);
   color: white;
   padding: 10px;
   font-size: larger;
@@ -184,7 +198,16 @@ main section.banner .container h1 {
 
 .specbutton:hover {
   cursor: pointer;
-  background-color: #8e0000;
+  background-color: rgba(142, 0, 0, 0.5);
+}
+
+.packlogo img {
+  height: 64px;
+  width: 64px;
+}
+
+.packlogo {
+  cursor: auto;
 }
 
 /*# sourceMappingURL=style.css.map */
