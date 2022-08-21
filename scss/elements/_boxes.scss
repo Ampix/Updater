@@ -1,7 +1,7 @@
 @use '../datas/assets' as *;
 
 .basebox {
-      background-color: #005b6d;
+      background-color: #292929;
       align-items: center;
       text-align: center;
       color: white;
@@ -15,4 +15,18 @@
       border: 5px solid white;
       box-shadow: 0px 0px 10px 5px $primary;     
       text-shadow: 1px 1px 1px black;
+}
+
+.twigmod2box {
+      background-image: url("assets/logos/twigmod2.png");
+      background-repeat: no-repeat;
+      background-size: 250px;
+      background-position: center;
+}
+
+.builderbox {
+      background-image: url("assets/logos/ampixbuilders.png");
+      background-repeat: no-repeat;
+      background-size: 250px;
+      background-position: center;
 }

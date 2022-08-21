@@ -92,5 +92,5 @@ function createWindow () {
     })
     
     autoUpdater.on('update-downloaded', (info) => {
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, zárd be a telepítéshez.");
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, zárd be az updatert a telepítéshez.");
     });

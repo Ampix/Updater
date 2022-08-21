@@ -1,7 +1,7 @@
 @use '../datas/assets' as *;
 
 .specbutton {
-      background-color: $primary;
+      background-color: rgb(214, 0, 0, .5);
       color: white;
       padding: 10px;
       font-size: larger;
@@ -14,5 +14,5 @@
 
 .specbutton:hover {
       cursor: pointer;
-      background-color: $primary-dark;
+      background-color: rgb(142, 0, 0, .5);
 }
