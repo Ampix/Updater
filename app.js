@@ -7,6 +7,12 @@ let updatestat = ""
 
 //hold the array of directory paths selected by user
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 let dir
 
 ipcMain.on('selectdirbuilders', function() {
@@ -106,6 +112,18 @@ function createWindow () {
       win.webContents.send( "setupdateinfo", "Letöltés " + log_message );
     })
     
-    autoUpdater.on('update-downloaded', (info) => {
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, zárd be az updatert a telepítéshez.");
+    autoUpdater.on('update-downloaded', async (info) => {
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 5 mp múlva.");
+      await sleep(1000)
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 4 mp múlva.");
+      await sleep(1000)
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 3 mp múlva.");
+      await sleep(1000)
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 2 mp múlva.");
+      await sleep(1000)
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 1 mp múlva.");
+      await sleep(1000)
+      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul...");
+      await sleep(500)
+      autoUpdater.quitAndInstall()
     });
