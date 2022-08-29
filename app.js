@@ -101,7 +101,8 @@ function createWindow () {
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
-      let log_message = ' (' + progressObj.transferred + " Byte " + "/ " + progressObj.total + " Byte" + ')';
+      var percent = (progressObj.transferred * 100) / progressObj.total;
+      let log_message = ' (' + percent.toFixed(0) + '%)';
       win.webContents.send( "setupdateinfo", "Letöltés " + log_message );
     })
     
