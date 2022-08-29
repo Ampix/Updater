@@ -216,15 +216,28 @@ function otherDir(size, type){
 
 function updatepack(type){
       if(type == "builders"){
+            var received_bytes = 0;
+            var total_bytes = 0;
             const loc = dirs.builders
             fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true })
             fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true })
             fs.rmSync(loc + "\\mods", { recursive: true, force: true })
             fs.rmSync(loc + "\\base.zip", { recursive: true, force: true })
-            updatetext("status","builders", "Letöltés...")
-            request('https://cdn.ampix.hu/builders/base.zip')
-            .pipe(fs.createWriteStream(loc + '\\base.zip'))
-            .on('close', async function () {
+            updatetext("status","builders", "Letöltés indítása")
+            var req = request({
+                  method: 'GET',
+                  uri: "https://cdn.ampix.hu/builders/base.zip"
+              });
+            req.pipe(fs.createWriteStream(loc + '\\base.zip'))
+            req.on('response', function(data) {
+                  all = data.headers[ 'content-length' ]
+            })
+            req.on('data', function(chunk) {
+                  current += chunk.length
+                  var percent = (current * 100) / all;
+                  updatetext("status","builders","Letöltés (" + percent.toFixed(0) + "%)")
+            })
+            req.on('end', async function () {
                   updatetext("status","builders", "Kicsomagolás...")
                   decompress(loc+'\\base.zip', loc+'\\').then(async files => {
                         fs.rmSync(loc + "\\base.zip", { force: true })
@@ -236,16 +249,29 @@ function updatepack(type){
       }
       
       if(type == "twigmod2"){
+            var all = 0
+            var current = 0
             const loc = dirs.twigmod2
             fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true })
             fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true })
             fs.rmSync(loc + "\\mods", { recursive: true, force: true })
             fs.rmSync(loc + "\\base.zip", { recursive: true, force: true })
             fs.rmSync(loc + "\\config", { recursive: true, force: true })
-            updatetext("status","twigmod2", "Letöltés...")
-            request('https://cdn.ampix.hu/twigmod2/base.zip')
-            .pipe(fs.createWriteStream(loc + '\\base.zip'))
-            .on('close', async function () {
+            updatetext("status","twigmod2", "Letöltés indítása")
+            var req = request({
+                  method: 'GET',
+                  uri: "https://cdn.ampix.hu/twigmod2/base.zip"
+              });
+            req.pipe(fs.createWriteStream(loc + '\\base.zip'))
+            req.on('response', function(data) {
+                  all = data.headers[ 'content-length' ]
+            })
+            req.on('data', function(chunk) {
+                  current += chunk.length
+                  var percent = (current * 100) / all;
+                  updatetext("status","twigmod2","Letöltés (" + percent.toFixed(0) + "%)")
+            })
+            req.on('end', async function () {
                   updatetext("status","twigmod2", "Kicsomagolás...")
                   decompress(loc+'\\base.zip', loc+'\\').then(async files => {
                         fs.rmSync(loc + "\\base.zip", { force: true })
