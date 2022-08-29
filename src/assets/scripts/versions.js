@@ -267,11 +267,11 @@ async function delpack(type){
             otherDir("je","builders")
       }
       if(type == "twigmod2"){
-            fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\base.zip", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\config", { recursive: true, force: true })
+            fs.rmSync(dirs.twigmod2 + "\\ampixupdater", { recursive: true, force: true })
+            fs.rmSync(dirs.twigmod2 + "\\simple-rpc", { recursive: true, force: true })
+            fs.rmSync(dirs.twigmod2 + "\\mods", { recursive: true, force: true })
+            fs.rmSync(dirs.twigmod2 + "\\base.zip", { recursive: true, force: true })
+            fs.rmSync(dirs.twigmod2 + "\\config", { recursive: true, force: true })
             updatetext("statuswarn","twigmod2", "Modpack sikeresen kitörölve.")
             await sleep(1500)
             otherDir("je","twigmod2")
