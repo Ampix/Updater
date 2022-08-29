@@ -23,6 +23,20 @@ ipcMain.on('selectdirbuilders', function() {
     win.webContents.send('selectdirback', (tipo,mappa));
   })
 })
+ipcMain.on('selectdirt2', function() {
+  dir = dialog.showOpenDialog(win, {
+    title: "Válasszad má' ki!", 
+    properties: ['openDirectory']
+  }).then(result => {
+    if(result.canceled) return
+    let tipo = "twigmod2"
+    let mappa = {
+      tipo: "twigmod2",
+      folder: result.filePaths[0]
+    }
+    win.webContents.send('selectdirback', (tipo,mappa));
+  })
+})
 
 ipcMain.on( "setupdateinfo", ( event, value ) => {
   updatestat = value;
