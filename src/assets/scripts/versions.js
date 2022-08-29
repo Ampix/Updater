@@ -246,7 +246,7 @@ function updatepack(type){
             request('https://cdn.ampix.hu/twigmod2/base.zip')
             .pipe(fs.createWriteStream(loc + '\\base.zip'))
             .on('close', async function () {
-                  updatetext("status","builders", "Kicsomagolás...")
+                  updatetext("status","twigmod2", "Kicsomagolás...")
                   decompress(loc+'\\base.zip', loc+'\\').then(async files => {
                         fs.rmSync(loc + "\\base.zip", { force: true })
                         updatetext("status","twigmod2", "Kész!")
@@ -258,20 +258,22 @@ function updatepack(type){
 }
 async function delpack(type){
       if(type == "builders"){
-            fs.rmSync(dirs.builders + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\simple-rpc", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\mods", { recursive: true, force: true })
-            fs.rmSync(dirs.builders + "\\base.zip", { recursive: true, force: true })
+            const loc = dirs.builders
+            fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true })
+            fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true })
+            fs.rmSync(loc + "\\mods", { recursive: true, force: true })
+            fs.rmSync(loc + "\\base.zip", { recursive: true, force: true })
             updatetext("statuswarn","builders", "Modpack sikeresen kitörölve.")
             await sleep(1500)
             otherDir("je","builders")
       }
       if(type == "twigmod2"){
-            fs.rmSync(dirs.twigmod2 + "\\ampixupdater", { recursive: true, force: true })
-            fs.rmSync(dirs.twigmod2 + "\\simple-rpc", { recursive: true, force: true })
-            fs.rmSync(dirs.twigmod2 + "\\mods", { recursive: true, force: true })
-            fs.rmSync(dirs.twigmod2 + "\\base.zip", { recursive: true, force: true })
-            fs.rmSync(dirs.twigmod2 + "\\config", { recursive: true, force: true })
+            const loc = dirs.twigmod2
+            fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true })
+            fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true })
+            fs.rmSync(loc + "\\mods", { recursive: true, force: true })
+            fs.rmSync(loc + "\\base.zip", { recursive: true, force: true })
+            fs.rmSync(loc + "\\config", { recursive: true, force: true })
             updatetext("statuswarn","twigmod2", "Modpack sikeresen kitörölve.")
             await sleep(1500)
             otherDir("je","twigmod2")
