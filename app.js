@@ -59,6 +59,7 @@ function createWindow () {
         height: 750,
         resizable: false,
         autoHideMenuBar: true,
+        show: false,
         icon: "src/assets/icon.png",
         webPreferences: {
           preload: path.join(app.getAppPath(), 'preload.js'),
@@ -67,11 +68,29 @@ function createWindow () {
         },
         backgroundColor: '#333333'
       })
-    
+      var splash = new BrowserWindow({
+        width: 300, 
+        height: 150, 
+        transparent: true, 
+        frame: false, 
+        alwaysOnTop: true,
+        icon: "src/assets/icon.png",
+        webPreferences: {
+          preload: path.join(app.getAppPath(), 'preload.js'),
+          nodeIntegration: true,
+          contextIsolation: false
+        }
+   });
+      splash.loadFile('src/splash.html');
+      splash.center();
       win.loadFile('src/home.ejs')
       //win.removeMenu()
       //win.webContents.openDevTools()
       ejse.data("version", app.getVersion())
+      setTimeout(function () {
+        splash.close();
+        win.show();
+      }, 5000);
     }
 
     app.whenReady().then(() => {

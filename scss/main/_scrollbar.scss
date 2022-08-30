@@ -1,7 +1,15 @@
 @use '../datas/assets' as *;
 
+body {
+      overflow: hidden;
+}
+.minden {
+      overflow-y: scroll;
+      height: 725px;
+}
+
 ::-webkit-scrollbar {
-      width: 0.5em;
+      width: 10px;
 }
 
 ::-webkit-scrollbar-track {

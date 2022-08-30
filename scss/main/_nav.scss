@@ -11,10 +11,9 @@
 
 .main-nav {
       position: fixed;
-      top:0;
       left:0;
       right: 0;
-      z-index: 99;
+      z-index: 90;
       background-color: $dark-inv;
       padding: 16px 32px;
       border-bottom: 3px solid $primary;
