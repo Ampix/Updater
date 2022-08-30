@@ -51,6 +51,14 @@ ipcRenderer.on("selectdirback", function(tipo, cuccos) {
       }
 })
 
+ipcRenderer.on("addrebtn", () => {
+      show("rebtn")
+})
+
+function resta(){
+      ipcRenderer.send('installupdate');
+}
+
 function updatetext(type, what, to){
       if(type == "dir"){
             document.getElementById(what).innerHTML = to
@@ -216,8 +224,8 @@ function otherDir(size, type){
 
 function updatepack(type){
       if(type == "builders"){
-            var received_bytes = 0;
-            var total_bytes = 0;
+            var all = 0
+            var currennt = 0
             const loc = dirs.builders
             fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true })
             fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true })
@@ -241,9 +249,13 @@ function updatepack(type){
                   updatetext("status","builders", "Kicsomagolás...")
                   decompress(loc+'\\base.zip', loc+'\\').then(async files => {
                         fs.rmSync(loc + "\\base.zip", { force: true })
-                        updatetext("status","builders", "Kész!")
-                        await sleep(2000)
-                        otherDir("je", "builders")
+                        request('https://cdn.ampix.hu/builders/ver.txt')
+                        .pipe(fs.createWriteStream(loc + '\\ampixupdater\\ver.txt'))
+                        .on('close', async function () {
+                              updatetext("status","builders", "Kész!")
+                              await sleep(2000)
+                              otherDir("je", "builders")
+                        })
                   });
             });
       }
@@ -275,9 +287,13 @@ function updatepack(type){
                   updatetext("status","twigmod2", "Kicsomagolás...")
                   decompress(loc+'\\base.zip', loc+'\\').then(async files => {
                         fs.rmSync(loc + "\\base.zip", { force: true })
-                        updatetext("status","twigmod2", "Kész!")
-                        await sleep(2000)
-                        otherDir("je", "twigmod2")
+                        request('https://cdn.ampix.hu/twigmod2/ver.txt')
+                        .pipe(fs.createWriteStream(loc + '\\ampixupdater\\ver.txt'))
+                        .on('close', async function () {
+                              updatetext("status","twigmod2", "Kész!")
+                              await sleep(2000)
+                              otherDir("je", "twigmod2")
+                        })
                   });
             });
       }

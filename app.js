@@ -53,6 +53,10 @@ ipcMain.on( "giveupdateinfo", () => {
   win.webContents.send('updateinfo', (updatestat))
 });
 
+ipcMain.on( "installupdate", () => {
+  autoUpdater.quitAndInstall()
+});
+
 function createWindow () {
       win = new BrowserWindow({
         width: 1200,
@@ -110,19 +114,19 @@ function createWindow () {
       }
     })
     autoUpdater.on('checking-for-update', () => {
-      win.webContents.send( "setupdateinfo", "Frissités keresése..." );
+      win.webContents.send("setupdateinfo", "Frissités keresése..." );
     })
     
     autoUpdater.on('update-available', (info) => {
-      win.webContents.send( "setupdateinfo", "Frissités találva" );
+      win.webContents.send("setupdateinfo", "Frissités találva" );
     })
     
     autoUpdater.on('update-not-available', (info) => {
-      win.webContents.send( "setupdateinfo", "" );
+      win.webContents.send("setupdateinfo", "" );
     })
     
     autoUpdater.on('error', (err) => {
-      win.webContents.send( "setupdateinfo", "Hiba: " + err );
+      win.webContents.send("setupdateinfo", "Hiba: " + err );
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
@@ -132,17 +136,6 @@ function createWindow () {
     })
     
     autoUpdater.on('update-downloaded', async (info) => {
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 5 mp múlva.");
-      await sleep(1000)
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 4 mp múlva.");
-      await sleep(1000)
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 3 mp múlva.");
-      await sleep(1000)
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 2 mp múlva.");
-      await sleep(1000)
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul 1 mp múlva.");
-      await sleep(1000)
-      win.webContents.send( "setupdateinfo", "Frissités letöltve, újraindul...");
-      await sleep(500)
-      autoUpdater.quitAndInstall()
+      win.webContents.send("setupdateinfo", "Frissités letöltve.");
+      win.webContents.send("addrebtn");
     });
