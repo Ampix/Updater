@@ -52,8 +52,17 @@ main section.banner .container h1 {
   display: none;
 }
 
+body {
+  overflow: hidden;
+}
+
+.minden {
+  overflow-y: scroll;
+  height: 725px;
+}
+
 ::-webkit-scrollbar {
-  width: 0.5em;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -76,10 +85,9 @@ main section.banner .container h1 {
 
 .main-nav {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
-  z-index: 99;
+  z-index: 90;
   background-color: rgba(17, 17, 17, 0.95);
   padding: 16px 32px;
   border-bottom: 3px solid #d60000;

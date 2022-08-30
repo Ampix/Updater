@@ -1,5 +1,5 @@
 const element = document.getElementById("updateinfo")
-
+const $ = require('jquery')
 const ipcRenderer = require('electron').ipcRenderer;
 const remote = require('electron').remote;
 ipcRenderer.send("giveupdateinfo")
