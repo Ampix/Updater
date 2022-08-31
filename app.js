@@ -4,6 +4,7 @@ const ejse = require('ejs-electron')
 const { autoUpdater } = require("electron-updater")
 var win
 var splash
+var dev = true
 //hold the array of directory paths selected by user
 
 function sleep(ms) {
@@ -76,9 +77,10 @@ function createWindow () {
       splash.center();
       win.loadFile('src/home.ejs')
       win.center();
-      win.removeMenu()
-      splash.removeMenu()
-      //win.webContents.openDevTools()
+      if(!dev){
+        win.removeMenu()
+        splash.removeMenu()
+      }
       ejse.data("version", app.getVersion())
     }
 
@@ -86,6 +88,7 @@ function createWindow () {
         createWindow()
         await sleep(500)
         autoUpdater.checkForUpdatesAndNotify()
+        if(dev) loader()
     })
 
     function loader(){
