@@ -60,7 +60,7 @@ function createWindow () {
       })
       splash = new BrowserWindow({
         width: 300, 
-        height: 400, 
+        height: 150, 
         transparent: true, 
         frame: false, 
         alwaysOnTop: true,
@@ -76,7 +76,8 @@ function createWindow () {
       splash.center();
       win.loadFile('src/home.ejs')
       win.center();
-      //win.removeMenu()
+      win.removeMenu()
+      splash.removeMenu()
       //win.webContents.openDevTools()
       ejse.data("version", app.getVersion())
     }
@@ -98,26 +99,25 @@ function createWindow () {
       }
     })
     autoUpdater.on('checking-for-update', () => {
-      splash.webContents.send("updateinfo", ("lol","search", undefined));
+      
     })
     
     autoUpdater.on('update-available', (info) => {
-      splash.webContents.send("updateinfo", ("lol","found", undefined));
+      
     })
     
     autoUpdater.on('update-not-available', async (info) => {
-      splash.webContents.send("updateinfo", ("lol", "noupdate", undefined));
       await sleep(1000)
       loader()
     })
     
     autoUpdater.on('error', (err) => {
-      splash.webContents.send("updateinfo", ("lol","error", err ));
+      
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
       var percent = (progressObj.transferred * 100) / progressObj.total;
-      splash.webContents.send( "updateinfo", ("lol","downloading", percent.toFixed(0) + '%' ));
+      
     })
     
     autoUpdater.on('update-downloaded', (info) => {
