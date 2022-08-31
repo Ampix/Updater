@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+
+:root{
+    --primary: #d60000;
+    --primary-dark: #8e0000;
+}
+
 body {
-      background-image: linear-gradient(to bottom right, #d60000, #8e0000);
+      background-color: #333;
       font-family: "Silkscreen", cursive;
+      text-align: center;
+      color: white;
   }
   
   .flex {
@@ -10,7 +18,7 @@ body {
       flex: 1 1 auto
   }
       .loader {
-          border: 5px solid #d60000;
+          border: 5px solid var(--primary);
           border-radius: 50%;
           border-top: 5px solid #ffffff;
           width: 40px;
@@ -21,7 +29,7 @@ body {
           margin: auto;
           left: 0;
           right: 0;
-          top: 0px;
+          top: 20px;
           bottom: 0;
           position: fixed;
       }
@@ -51,7 +59,26 @@ body {
           border: none !important;
           text-align: center;
       }
-h3 {
-      text-align: center;
-      color: white;
+
+.hide {
+    display: none;
+}
+
+.progress {
+    width: 175px;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 200px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.progress_fill {
+    width: 50%;
+    height: 100%;
+    background-color: var(--primary);
+    transition: 0.5s;
 }

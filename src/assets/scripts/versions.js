@@ -1,6 +1,7 @@
 var fs = require("fs");
 const request = require('request');
 const decompress = require("decompress")
+const ipcRenderer = require('electron').ipcRenderer;
 
 var dirs = {
       builders: "nincs",
@@ -50,14 +51,6 @@ ipcRenderer.on("selectdirback", function(tipo, cuccos) {
             loadup("twigmod2")
       }
 })
-
-ipcRenderer.on("addrebtn", () => {
-      show("rebtn")
-})
-
-function resta(){
-      ipcRenderer.send('installupdate');
-}
 
 function updatetext(type, what, to){
       if(type == "dir"){

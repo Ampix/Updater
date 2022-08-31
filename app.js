@@ -2,9 +2,8 @@ const { app, BrowserWindow, dialog, ipcMain} = require('electron')
 const path = require('path')
 const ejse = require('ejs-electron')
 const { autoUpdater } = require("electron-updater")
-let win
-let updatestat = ""
-
+var win
+var splash
 //hold the array of directory paths selected by user
 
 function sleep(ms) {
@@ -44,19 +43,6 @@ ipcMain.on('selectdirt2', function() {
   })
 })
 
-ipcMain.on( "setupdateinfo", ( event, value ) => {
-  updatestat = value;
-  win.webContents.send('updateinfo', (value))
-});
-
-ipcMain.on( "giveupdateinfo", () => {
-  win.webContents.send('updateinfo', (updatestat))
-});
-
-ipcMain.on( "installupdate", () => {
-  autoUpdater.quitAndInstall()
-});
-
 function createWindow () {
       win = new BrowserWindow({
         width: 1200,
@@ -72,12 +58,13 @@ function createWindow () {
         },
         backgroundColor: '#333333'
       })
-      var splash = new BrowserWindow({
+      splash = new BrowserWindow({
         width: 300, 
-        height: 150, 
+        height: 400, 
         transparent: true, 
         frame: false, 
         alwaysOnTop: true,
+        resizable: false,
         icon: "src/assets/icon.png",
         webPreferences: {
           preload: path.join(app.getAppPath(), 'preload.js'),
@@ -85,28 +72,25 @@ function createWindow () {
           contextIsolation: false
         }
    });
-      splash.loadFile('src/splash.html');
+      splash.loadFile('src/splash.ejs');
       splash.center();
       win.loadFile('src/home.ejs')
+      win.center();
       //win.removeMenu()
       //win.webContents.openDevTools()
       ejse.data("version", app.getVersion())
-      setTimeout(function () {
-        splash.close();
-        win.show();
-      }, 5000);
     }
 
-    app.whenReady().then(() => {
-      createWindow()
-      
-      autoUpdater.checkForUpdates()    
-      app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-          createWindow()
-        }
-      })
+    app.whenReady().then(async () => {
+        createWindow()
+        await sleep(500)
+        autoUpdater.checkForUpdatesAndNotify()
     })
+
+    function loader(){
+      splash.close()
+      win.show()
+    }
     
     app.on('window-all-closed', () => {
       if (process.platform !== 'darwin') {
@@ -114,28 +98,28 @@ function createWindow () {
       }
     })
     autoUpdater.on('checking-for-update', () => {
-      win.webContents.send("setupdateinfo", "Frissités keresése..." );
+      splash.webContents.send("updateinfo", ("lol","search", undefined));
     })
     
     autoUpdater.on('update-available', (info) => {
-      win.webContents.send("setupdateinfo", "Frissités találva" );
+      splash.webContents.send("updateinfo", ("lol","found", undefined));
     })
     
-    autoUpdater.on('update-not-available', (info) => {
-      win.webContents.send("setupdateinfo", "" );
+    autoUpdater.on('update-not-available', async (info) => {
+      splash.webContents.send("updateinfo", ("lol", "noupdate", undefined));
+      await sleep(1000)
+      loader()
     })
     
     autoUpdater.on('error', (err) => {
-      win.webContents.send("setupdateinfo", "Hiba: " + err );
+      splash.webContents.send("updateinfo", ("lol","error", err ));
     })
     
     autoUpdater.on('download-progress', (progressObj) => {
       var percent = (progressObj.transferred * 100) / progressObj.total;
-      let log_message = ' (' + percent.toFixed(0) + '%)';
-      win.webContents.send( "setupdateinfo", "Letöltés " + log_message );
+      splash.webContents.send( "updateinfo", ("lol","downloading", percent.toFixed(0) + '%' ));
     })
     
-    autoUpdater.on('update-downloaded', async (info) => {
-      win.webContents.send("setupdateinfo", "Frissités letöltve.");
-      win.webContents.send("addrebtn");
+    autoUpdater.on('update-downloaded', (info) => {
+      autoUpdater.quitAndInstall()
     });
