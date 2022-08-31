@@ -4,8 +4,7 @@ const ejse = require('ejs-electron')
 const { autoUpdater } = require("electron-updater")
 var win
 var splash
-var dev = true
-//hold the array of directory paths selected by user
+var dev = false
 
 function sleep(ms) {
   return new Promise((resolve) => {
