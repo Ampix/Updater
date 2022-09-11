@@ -16,7 +16,7 @@ let dir
 
 ipcMain.on('selectdirbuilders', function() {
   dir = dialog.showOpenDialog(win, {
-    title: "Válasszad má' ki!", 
+    title: "Ampix Builders Mappaválasztás", 
     properties: ['openDirectory']
   }).then(result => {
     if(result.canceled) return
@@ -30,7 +30,7 @@ ipcMain.on('selectdirbuilders', function() {
 })
 ipcMain.on('selectdirt2', function() {
   dir = dialog.showOpenDialog(win, {
-    title: "Válasszad má' ki!", 
+    title: "Twigmod 2 Mappaválasztás", 
     properties: ['openDirectory']
   }).then(result => {
     if(result.canceled) return
@@ -109,7 +109,7 @@ function createWindow () {
     })
     
     autoUpdater.on('update-not-available', async (info) => {
-      await sleep(1000)
+      await sleep(500)
       loader()
     })
     

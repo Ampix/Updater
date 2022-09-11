@@ -1,11 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poiret One", cursive;
-  /*font-family: 'Silkscreen', cursive;*/
+  font-family: "Poppins", sans-serif;
 }
 
 body {
