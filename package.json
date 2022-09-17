@@ -8,7 +8,8 @@
     "electron": "nodemon --watch . --exec \"electron .\" -e js,html,ejs,css",
     "dist": "electron-builder --win",
     "publish": "set GH_TOKEN=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 && electron-builder --win --publish always",
-    "sass": "sass -w scss:src"
+    "sass": "sass -w scss:src/assets/css",
+    "pret": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "electron": "^20.0.2",
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^23.3.3",
+    "prettier": "2.7.1"
   }
 }

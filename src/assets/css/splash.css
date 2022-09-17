@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+
+:root {
+  --primary: #d60000;
+  --primary-dark: #8e0000;
+}
+
+body {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary),
+    var(--primary-dark)
+  );
+  background-attachment: fixed;
+  font-family: "Silkscreen", cursive;
+  text-align: center;
+  color: white;
+}
+
+.flex {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+.loader {
+  border: 5px solid var(--primary);
+  border-radius: 50%;
+  border-top: 5px solid #ffffff;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 1s linear infinite;
+  /* Safari */
+  animation: spin 1s linear infinite;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 20px;
+  bottom: 0;
+  position: fixed;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.center {
+  border: none !important;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+.progress {
+  width: 175px;
+  height: 30px;
+  background-color: white;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 200px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.progress_fill {
+  width: 50%;
+  height: 100%;
+  background-color: var(--primary);
+  transition: 0.5s;
+}
