@@ -1,0 +1,28 @@
+@use '../datas/assets' as *;
+
+.titlebar {
+      width: 100vw;
+      height: 30px;
+      background-color: #18191A;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      -webkit-app-region: drag;
+}
+
+.titlebar-link {
+      padding: 15px;
+      font-size: 1.4rem;
+      -webkit-app-region: no-drag;
+}
+
+.titlebar-link:hover {
+      color: $primary;
+      transition: 0.5s;
+}
+
+.titlebar-text {
+      font-weight: 1000;
+      text-align: center;
+      margin-left: 20px;
+}

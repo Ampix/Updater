@@ -4,7 +4,7 @@ const ejse = require("ejs-electron");
 const { autoUpdater } = require("electron-updater");
 var win;
 var splash;
-var dev = false;
+var dev = true;
 
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -47,10 +47,19 @@ ipcMain.on("selectdirt2", function () {
     });
 });
 
-function createWindow() {
+ipcMain.on("app/close", () => {
+  app.quit();
+});
+
+ipcMain.on("app/minimize", () => {
+  win.minimize();
+});
+
+async function createWindow() {
   win = new BrowserWindow({
     width: 1200,
     height: 750,
+    frame: false,
     resizable: false,
     autoHideMenuBar: true,
     show: false,
