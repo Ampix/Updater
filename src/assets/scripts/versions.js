@@ -22,11 +22,13 @@ var vers = {
   t2_online: "nincs",
 };
 
-function openDir(type) {
+async function openDir(type) {
   if (type == "builders") {
+    await sleep(550);
     ipcRenderer.send("selectdirbuilders");
   }
   if (type == "twigmod2") {
+    await sleep(550);
     ipcRenderer.send("selectdirt2");
   }
 }
