@@ -34,10 +34,12 @@
             padding: 8px 16px;
             border-radius: 99px;
             background-color: $primary;
+            cursor: none;
       }
       
       a:hover {
             background-color: $primary-dark;
+            
       }
 }
 

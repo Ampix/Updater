@@ -4,7 +4,7 @@ const ejse = require("ejs-electron");
 const { autoUpdater } = require("electron-updater");
 var win;
 var splash;
-var dev = true;
+var dev = false;
 
 function sleep(ms) {
   return new Promise((resolve) => {
