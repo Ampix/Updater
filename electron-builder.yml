@@ -1,23 +1,23 @@
-appId: 'ampixupdater'
-productName: 'Ampix Updater'
-artifactName: '${productName}-setup-${version}.${ext}'
+appId: "ampixupdater"
+productName: "Ampix Updater"
+artifactName: "${productName}-setup-${version}.${ext}"
 
-copyright: 'Copyright © 2020-2022 HVCsano'
+copyright: "Copyright © 2020-2022 HVCsano"
 
 asar: true
-compression: 'maximum'
+compression: "maximum"
 
 files:
-  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
+  - "!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}"
 
 extraResources:
-  - 'libraries'
+  - "libraries"
 
 # Windows Configuration
-win: 
-  target: 
-    - target: 'nsis'
-      arch: 'x64'
+win:
+  target:
+    - target: "nsis"
+      arch: "x64"
 
 # Windows Installer Configuration
 nsis:
@@ -27,5 +27,5 @@ nsis:
   allowToChangeInstallationDirectory: false
 
 directories:
-  buildResources: 'build'
-  output: 'dist'
+  buildResources: "build"
+  output: "dist"
