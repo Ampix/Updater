@@ -15,22 +15,16 @@
       <div class="titlebar-left">
         <h3 class="titlebar-text">Ampix Updater v<%= version %></h3>
       </div>
+      <div class="titlebar-nav">
+        <a href="home.ejs" class="titlebar-nav-links" id="Kezdőlap">Kezdőlap</a>
+        <a href="update.ejs" class="titlebar-nav-links" id="Információk">Információk</a>
+        <a href="versions.ejs" class="titlebar-nav-links" id="Modpackek">Modpackek</a>
+      </div>
       <div class="titlebar-right">
         <span class="titlebar-link" id="minimize">&minus;</span>
         <span class="titlebar-link" id="close-app">&#10006</span>
       </div>
     </nav>
-      <nav class="main-nav">
-        <div class="nav-container">
-          <h1 class="nav-text">Ampix Updater</h1>
-          <h3 class="version-text">v<%= version %></h3>
-          <div class="nav-menu">
-            <a href="home.ejs">Kezdőlap</a>
-            <a href="update.ejs">Frissités</a>
-            <a href="versions.ejs">Modpackek</a>
-          </div>
-        </div>
-      </nav>
     </header>
     <script>
       const cursor = document.getElementById("cursor");
