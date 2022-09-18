@@ -1,7 +1,6 @@
 var fs = require("fs");
 const request = require("request");
 const decompress = require("decompress");
-const ipcRenderer = require("electron").ipcRenderer;
 
 var dirs = {
   builders: "nincs",
