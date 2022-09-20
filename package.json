@@ -1,6 +1,6 @@
 {
   "name": "ampixupdater",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "decompress": "^4.2.1",
     "ejs": "^3.1.8",
     "ejs-electron": "^2.1.1",
+    "electron-is-packaged": "^1.0.2",
     "electron-updater": "^5.2.1",
     "install": "^0.13.0",
     "jquery": "^3.6.1",

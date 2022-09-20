@@ -8,9 +8,14 @@ const {
 const path = require("path");
 const ejse = require("ejs-electron");
 const { autoUpdater } = require("electron-updater");
+const isPackaged = require("electron-is-packaged").isPackaged;
 var win;
 var splash;
 var dev = false;
+
+if (isPackaged === false) {
+  dev = true;
+}
 
 function sleep(ms) {
   return new Promise((resolve) => {
