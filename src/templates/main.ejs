@@ -13,7 +13,9 @@
     <header>
       <nav class="titlebar">
       <div class="titlebar-left">
-        <h3 class="titlebar-text">Ampix Updater v<%= version %></h3>
+        <h3 class="titlebar-text">Ampix Updater v<%= version %> <% if (dev) { %>
+         DEV MÓD
+        <% } %></h3>
       </div>
       <div class="titlebar-nav">
         <a href="home.ejs" class="titlebar-nav-links" id="Kezdőlap">Kezdőlap</a>

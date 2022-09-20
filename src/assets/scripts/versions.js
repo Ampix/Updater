@@ -7,8 +7,6 @@ var dirs = {
   twigmod2: "nincs",
 };
 
-let doneb = false;
-
 var stat = {
   builders: "nincs",
   twigmod2: "nincs",

@@ -12,7 +12,7 @@
 
 .titlebar-nav {
       -webkit-app-region: no-drag;
-      cursor: none;
+      //cursor: none;
       align-items: center;
       text-align: center;
 }
@@ -24,9 +24,9 @@
       margin-left: 20px;
       align-items: center;
       text-align: center;
-      cursor: none;
-      padding-left: 5px;
-      padding-right: 5px;
+      //cursor: none;
+      padding-left: 10px;
+      padding-right: 10px;
       padding-bottom: 6px; 
 }
 .titlebar-nav .active {

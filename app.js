@@ -1,10 +1,16 @@
-const { app, BrowserWindow, dialog, ipcMain } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  dialog,
+  ipcMain,
+  ipcRenderer,
+} = require("electron");
 const path = require("path");
 const ejse = require("ejs-electron");
 const { autoUpdater } = require("electron-updater");
 var win;
 var splash;
-var dev = true;
+var dev = false;
 
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -94,6 +100,7 @@ async function createWindow() {
     splash.removeMenu();
   }
   ejse.data("version", app.getVersion());
+  ejse.data("dev", dev);
 }
 
 app.whenReady().then(async () => {
