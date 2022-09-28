@@ -1,6 +1,6 @@
 {
   "name": "ampixupdater",
-  "version": "1.5.4",
+  "version": "2.0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Ampix/Updater#readme",
   "dependencies": {
+    "@electron/remote": "^2.0.8",
     "decompress": "^4.2.1",
     "ejs": "^3.1.8",
     "ejs-electron": "^2.1.1",
@@ -29,6 +30,7 @@
     "electron-updater": "^5.2.1",
     "install": "^0.13.0",
     "jquery": "^3.6.1",
+    "minecraft-java-core": "^2.4.1",
     "nodemon": "^2.0.19",
     "npm": "^8.18.0",
     "npm-run-all": "^4.1.5",
