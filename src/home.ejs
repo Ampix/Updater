@@ -1,20 +1,70 @@
 <%- include('templates/main.ejs') %>
 <div class="minden" id="minden">
-  <main class="img1">
-    <section class="banner">
-      <div class="container upper left">
-        <h1 class="spectext">Egy Updater</h1>
-        <h2 class="spectext">Minden Baromságra</h2>
+  <div class="superbox">
+    <div class="verbox" id="verbox">
+      <div class="twigmod2box">
+        <h3 class="spectext">Twigmod 2</h3>
+        <button class="specbutton donebutton hide" id="done-twigmod2"></button>
+        <button
+          onclick='setfolder("twigmod2")'
+          class="specbutton folderbutton hide"
+          id="setfolder-twigmod2"
+        ></button>
+        <button
+          onclick='checkupdate("twigmod2")'
+          class="specbutton refreshbutton hide"
+          id="checkpack-twigmod2"
+        ></button>
+        <button
+          onclick='updatepack("twigmod2")'
+          class="specbutton updatebutton hide"
+          id="downloadpack-twigmod2"
+        ></button>
+        <button
+          onclick='delpack("twigmod2")'
+          class="specbutton delbutton hide"
+          id="delpack-twigmod2"
+        ></button>
+        <div class="progress hide" id="progress-twigmod2">
+          <div class="progress_fill" id="progfill-twigmod2"></div>
+        </div>
+        <h3 class="hide" id="status-twigmod2">Nincs új frissités</h3>
       </div>
-    </section>
-  </main>
-  <div class="basebox">
-    <h1>Miért?</h1>
-    <h2>- Mert a Google Drive béna</h2>
-    <h2>- Mert a Curseforge béna</h2>
-    <h2>- Mert a (Minden más) béna</h2>
+      <div class="builderbox">
+        <h3 class="spectext">Ampix Builders</h3>
+        <button
+          class="specbutton donebutton hide"
+          id="done-ampixbuilders"
+        ></button>
+        <button
+          onclick='setfolder("ampixbuilders")'
+          class="specbutton folderbutton hide"
+          id="setfolder-ampixbuilders"
+        ></button>
+        <button
+          onclick='checkupdate("ampixbuilders")'
+          class="specbutton refreshbutton hide"
+          id="checkpack-ampixbuilders"
+        ></button>
+        <button
+          onclick='updatepack("ampixbuilders")'
+          class="specbutton updatebutton hide"
+          id="downloadpack-ampixbuilders"
+        ></button>
+        <button
+          onclick='delpack("ampixbuilders")'
+          class="specbutton delbutton hide"
+          id="delpack-ampixbuilders"
+        ></button>
+        <div class="progress hide" id="progress-ampixbuilders">
+          <div class="progress_fill" id="progfill-ampixbuilders"></div>
+        </div>
+        <h3 class="hide" id="status-ampixbuilders">Nincs új frissités</h3>
+      </div>
+    </div>
   </div>
 </div>
+<script src="assets/scripts/manager.js"></script>
 <script>
   document.getElementById("Kezdőlap").classList.add("active");
 </script>

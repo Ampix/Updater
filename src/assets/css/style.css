@@ -49,7 +49,7 @@ main section.banner .container h1 {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -103,15 +103,88 @@ body {
 .twigmod2box {
   background-image: url("../img/logo/twigmod2.png");
   background-repeat: no-repeat;
-  background-size: 250px;
-  background-position: center;
+  background-size: 75px;
+  background-position: center 10%;
+  padding: 25px;
+  border-radius: 10px;
+}
+.twigmod2box button {
+  margin-top: 80px;
 }
 
 .builderbox {
   background-image: url("../img/logo/ampixbuilders.png");
   background-repeat: no-repeat;
-  background-size: 250px;
-  background-position: center;
+  background-size: 75px;
+  background-position: center 10%;
+  padding: 25px;
+  border-radius: 10px;
+}
+.builderbox button {
+  margin-top: 80px;
+}
+
+.superbox {
+  color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.verbox {
+  background-color: #111;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+  border-radius: 25px;
+  padding: 20px;
+  display: flex;
+}
+
+.verbox .twigmod2box,
+.verbox .builderbox {
+  margin-left: 25px;
+  background-color: #222;
+}
+
+.settbox {
+  background-color: #222;
+  margin-top: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 25px;
+}
+.settbox .element {
+  display: flex;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  padding-top: 10px;
+  align-items: center;
+  text-align: center;
+}
+.settbox .element .foldertext {
+  margin-left: 40px;
+  margin-right: 20px;
+  max-width: 500px;
+  overflow: auto;
+  background-color: rgb(10, 10, 10);
+  padding: 10px;
+  border-radius: 10px;
+}
+.settbox .element button {
+  position: fixed;
+  background-color: #111;
+  color: white;
+  padding: 10px;
+  border: white solid 2px;
+  border-radius: 10px;
+  right: 150px;
+  font-weight: bolder;
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
 }
 
 .szunetfent {
@@ -148,15 +221,48 @@ body {
 }
 
 .specbutton {
-  background-color: rgba(214, 0, 0, 0.5);
+  background-color: #444;
   color: white;
-  padding: 10px;
+  padding: 25px;
   font-size: larger;
-  margin-top: 5px;
-  border-radius: 10px;
-  transition: 0.5s;
-  border: white 0.125em solid;
-  box-shadow: 0px 0px 5px 1px black;
+  color: white;
+  border: none;
+  margin-top: 40px;
+}
+
+.donebutton {
+  background: url("../img/icons/done.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+  cursor: default !important;
+}
+
+.donebutton:hover {
+  background-color: #222 !important;
+}
+
+.updatebutton {
+  background: url("../img/icons/download.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+}
+
+.refreshbutton {
+  background: url("../img/icons/refresh.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+}
+
+.delbutton {
+  background: url("../img/icons/delete.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+}
+
+.folderbutton {
+  background: url("../img/icons/folder.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
 }
 
 .installbtn {
@@ -175,6 +281,7 @@ body {
 
 .specbutton:hover {
   background-color: rgba(142, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .packlogo img {
@@ -189,7 +296,7 @@ body {
 .titlebar {
   width: 100vw;
   height: 30px;
-  background-color: #18191A;
+  background-color: #18191a;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -239,6 +346,26 @@ body {
   font-weight: 1000;
   text-align: center;
   margin-left: 20px;
+}
+
+.progress {
+  width: 200px;
+  height: 15px;
+  margin-top: 70px;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #555;
+  overflow: hidden;
+}
+
+.progress_fill {
+  transition: 0.5s;
+  width: 0%;
+  height: 100%;
+  background-color: #d60000;
 }
 
 /*# sourceMappingURL=style.css.map */

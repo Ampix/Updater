@@ -1,33 +1,65 @@
-@use '../datas/assets' as *;
+@use "../datas/assets" as *;
 
 .specbutton {
-      background-color: rgb(214, 0, 0, .5);
-      color: white;
-      padding: 10px;
-      font-size: larger;
-      margin-top: 5px;
-      border-radius: 10px;
-      transition: 0.5s;
-      border: white .125em solid;
-      box-shadow: 0px 0px 5px 1px black;
-      //cursor: none;
+  background-color: #444;
+  color: white;
+  padding: 25px;
+  font-size: larger;
+  color: white;
+  border: none;
+  margin-top: 40px;
+}
+
+.donebutton {
+  background: url("../img/icons/done.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+  cursor: default !important;
+}
+
+.donebutton:hover {
+  background-color: #222 !important;
+}
+
+.updatebutton {
+  background: url("../img/icons/download.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+}
+
+.refreshbutton {
+  background: url("../img/icons/refresh.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+}
+
+.delbutton {
+  background: url("../img/icons/delete.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
+}
+.folderbutton {
+  background: url("../img/icons/folder.png") no-repeat;
+  background-size: 50px;
+  background-position: center;
 }
 
 .installbtn {
-      background-color: $primary;
-      color: white;
-      padding: 2px;
-      font-size: 10px;
-      border: solid 2px white;
-      border-radius: 10px;
-      box-shadow: 0px 0px 5px 2px $primary;
-      position: absolute;
-      top: 52.5px;
-      left: 37.5%;
-      z-index: 99;
-      //cursor: none;
+  background-color: $primary;
+  color: white;
+  padding: 2px;
+  font-size: 10px;
+  border: solid 2px white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 2px $primary;
+  position: absolute;
+  top: 52.5px;
+  left: 37.5%;
+  z-index: 99;
+  //cursor: none;
 }
 
 .specbutton:hover {
-      background-color: rgb(142, 0, 0, .5);
+  background-color: rgb(142, 0, 0, 0.5);
+  cursor: pointer;
 }

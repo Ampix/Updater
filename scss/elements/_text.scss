@@ -1,26 +1,26 @@
-@use '../datas/assets' as *;
+@use "../datas/assets" as *;
 
 .version-text {
-      position: absolute;
-      color: white;
-      top: 52.5px;
-      left: 35px;
-      z-index: 99;
+  position: absolute;
+  color: white;
+  top: 52.5px;
+  left: 35px;
+  z-index: 99;
 }
 
 .update-text {
-      position: absolute;
-      color: white;
-      top: 52.5px;
-      left: 16%;
-      z-index: 99;
+  position: absolute;
+  color: white;
+  top: 52.5px;
+  left: 16%;
+  z-index: 99;
 }
 
 .spectext {
-      text-shadow:  2.5px 2.5px 7.5px $primary;
+  text-shadow: 2.5px 2.5px 7.5px $primary;
 }
 
 .warning {
-      color: red;
-      text-shadow: 0px 0px 5px $primary-dark !important; 
+  color: red;
+  text-shadow: 0px 0px 5px $primary-dark !important;
 }

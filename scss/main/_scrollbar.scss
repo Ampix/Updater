@@ -1,22 +1,22 @@
-@use '../datas/assets' as *;
+@use "../datas/assets" as *;
 
 body {
-      overflow: hidden;
+  overflow: hidden;
 }
 .minden {
-      overflow-y: scroll;
-      height: 725px;
+  overflow-y: scroll;
+  height: 725px;
 }
 
 ::-webkit-scrollbar {
-      width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-      background-color: $dark;
+  background-color: $dark;
 }
 
 ::-webkit-scrollbar-thumb {
-      background-color: $primary;
-      border-radius: 99px;
+  background-color: $primary;
+  border-radius: 99px;
 }
