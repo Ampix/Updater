@@ -54,6 +54,7 @@ function updatepack(type) {
     show("progress-" + type);
     show("status-" + type);
     hide("downloadpack-" + type);
+    hide("delpack-" + type);
     var req = request({
       method: "GET",
       uri: "https://cdn.ampix.hu/" + type + "/base.zip",
