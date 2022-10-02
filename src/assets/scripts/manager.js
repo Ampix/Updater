@@ -3,7 +3,7 @@ const request = require("request");
 const decompress = require("decompress");
 let configdir = require("./assets/scripts/configs.js").configdir;
 
-var modpacks = ["ampixbuilders", "twigmod2"];
+var modpacks = ["ampixbuilders", "twigmod2", "ampixmania"];
 var modpack_folders = [];
 
 ipcRenderer.on("selectdirback", function (evt, minden) {
@@ -94,6 +94,14 @@ async function delpack(type) {
       fs.rmSync(loc + "\\base.zip", { recursive: true, force: true });
       location.reload();
     }
+    if (type == "ampixmania") {
+      const loc = modpack_folders[id];
+      fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true });
+      fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true });
+      fs.rmSync(loc + "\\mods", { recursive: true, force: true });
+      fs.rmSync(loc + "\\base.zip", { recursive: true, force: true });
+      location.reload();
+    }
     if (type == "twigmod2") {
       const loc = modpack_folders[id];
       fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true });
@@ -110,16 +118,18 @@ function loadmodpack(item) {
   let id = getId(item);
   setTimeout(async () => {
     if (id !== modpack_folders.length) {
-      await new Promise((resolve) => setTimeout(resolve, 50)); // 3 sec
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      loadmodpack(item);
+    } else {
+      fs.readFile(configdir + item + ".txt", "utf8", function (err, data) {
+        if (!data) {
+          modpack_folders.push("none");
+        } else {
+          modpack_folders.push(data);
+        }
+        loaderin();
+      });
     }
-    fs.readFile(configdir + item + ".txt", "utf8", function (err, data) {
-      if (!data) {
-        modpack_folders.push("none");
-      } else {
-        modpack_folders.push(data);
-      }
-      loaderin();
-    });
   }, 100);
 }
 
