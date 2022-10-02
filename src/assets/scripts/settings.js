@@ -1,13 +1,13 @@
 var fs = require("fs");
 let configdir = require("./assets/scripts/configs.js").configdir;
-let builderstext = document.getElementById("buildersdir");
-let twigmod2text = document.getElementById("twigmod2dir");
-let builder_dir = "";
-let twigmod2_dir = "";
+let builderstext = document.getElementById("builders-dir");
+let twigmod2text = document.getElementById("twigmod2-dir");
+let ampixmaniatext = document.getElementById("mania-dir");
 
 function loadtext() {
   let buildtext = "";
   let twig2text = "";
+  let maniatext = "";
   // * Ampix Builders
   fs.readFile(configdir + "ampixbuilders.txt", "utf8", function (err, data) {
     if (!data) {
@@ -24,10 +24,19 @@ function loadtext() {
       twig2text = data;
     }
   });
+  // * Ampix Mania
+  fs.readFile(configdir + "ampixmania.txt", "utf8", function (err, data) {
+    if (!data) {
+      maniatext = "Nincs megadva";
+    } else {
+      maniatext = data;
+    }
+  });
 
   setTimeout(() => {
     builderstext.innerHTML = buildtext;
     twigmod2text.innerHTML = twig2text;
+    ampixmaniatext.innerHTML = maniatext;
   }, 150);
 }
 
@@ -36,24 +45,13 @@ function changeDir(type) {
 }
 
 ipcRenderer.on("selectdirback", function (evt, minden) {
-  if (minden.type == "twigmod2") {
-    fs.writeFile(configdir + "twigmod2.txt", minden.folder, (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        loadtext();
-      }
-    });
-  }
-  if (minden.type == "ampixbuilders") {
-    fs.writeFile(configdir + "ampixbuilders.txt", minden.folder, (err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        loadtext();
-      }
-    });
-  }
+  fs.writeFile(configdir + minden.type + ".txt", minden.folder, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      loadtext();
+    }
+  });
 });
 
 loadtext();

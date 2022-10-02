@@ -42,6 +42,18 @@
   }
 }
 
+.maniabox {
+  background-image: url("../img/logo/ampixmania.png");
+  background-repeat: no-repeat;
+  background-size: 75px;
+  background-position: center 10%;
+  padding: 25px;
+  border-radius: 10px;
+  button {
+    margin-top: 80px;
+  }
+}
+
 .superbox {
   color: white;
   text-align: center;
@@ -60,7 +72,8 @@
 }
 
 .verbox .twigmod2box,
-.verbox .builderbox {
+.verbox .builderbox,
+.verbox .maniabox {
   margin-left: 25px;
   background-color: #222;
 }
