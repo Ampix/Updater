@@ -96,6 +96,10 @@ async function delpack(type) {
   }, 100);
 }
 
+function openLink(link) {
+  shell.openExternal(link);
+}
+
 function loadmodpack(item) {
   let id = getId(item);
   setTimeout(async () => {
