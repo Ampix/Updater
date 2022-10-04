@@ -84,33 +84,15 @@ function updatepack(type) {
 }
 async function delpack(type) {
   let id = getId(type);
-  fs.rmSync(configdir + type + ".txt", { recursive: true, force: true });
   setTimeout(() => {
-    if (type == "ampixbuilders") {
-      const loc = modpack_folders[id];
-      fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true });
-      fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true });
-      fs.rmSync(loc + "\\mods", { recursive: true, force: true });
-      fs.rmSync(loc + "\\base.zip", { recursive: true, force: true });
-      location.reload();
-    }
-    if (type == "ampixmania") {
-      const loc = modpack_folders[id];
-      fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true });
-      fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true });
-      fs.rmSync(loc + "\\mods", { recursive: true, force: true });
-      fs.rmSync(loc + "\\base.zip", { recursive: true, force: true });
-      location.reload();
-    }
-    if (type == "twigmod2") {
-      const loc = modpack_folders[id];
-      fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true });
-      fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true });
-      fs.rmSync(loc + "\\mods", { recursive: true, force: true });
-      fs.rmSync(loc + "\\base.zip", { recursive: true, force: true });
-      fs.rmSync(loc + "\\config", { recursive: true, force: true });
-      location.reload();
-    }
+    fs.rmSync(configdir + type + ".txt", { recursive: true, force: true });
+    const loc = modpack_folders[id];
+    fs.rmSync(loc + "\\ampixupdater", { recursive: true, force: true });
+    fs.rmSync(loc + "\\simple-rpc", { recursive: true, force: true });
+    fs.rmSync(loc + "\\mods", { recursive: true, force: true });
+    fs.rmSync(loc + "\\base.zip", { recursive: true, force: true });
+    fs.rmSync(loc + "\\config", { recursive: true, force: true });
+    location.reload();
   }, 100);
 }
 
