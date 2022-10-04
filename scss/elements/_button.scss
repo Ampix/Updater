@@ -10,6 +10,26 @@
   margin-top: 40px;
 }
 
+.assetbtn {
+  background-color: #444;
+  color: white;
+  padding: 5px;
+  color: white;
+  border: none;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+
+.assetbtn:hover {
+  background-color: #444;
+  color: $primary !important;
+  padding: 5px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
 .donebutton {
   background: url("../img/icons/done.png") no-repeat;
   background-size: 50px;
