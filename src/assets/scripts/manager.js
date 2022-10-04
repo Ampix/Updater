@@ -189,6 +189,7 @@ function loadbuttons(item, mode) {
   if (mode === "noupdate") {
     show("status-" + item);
     show("done-" + item);
+    show("delpack-" + item);
     status("status-" + item, "Legújabb verzió");
   }
 }
