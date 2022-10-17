@@ -23,11 +23,30 @@
 .assetbtn:hover {
   background-color: #444;
   color: $primary !important;
-  padding: 5px;
+  padding: 10px;
   color: white;
   border: none;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.warnbutton {
+  position: absolute;
+  top: 20px;
+  right: 22%;
+  font-size: larger;
+  color: $primary;
+  background-color: #282828;
+  padding: 3px 10px;
+  font-weight: bolder;
+  border: none;
+  margin-top: 40px;
+}
+
+.warnbutton:hover {
+  cursor: pointer;
+  background-color: $primary;
+  color: white;
 }
 
 .donebutton {

@@ -39,6 +39,21 @@ function status(what, to) {
   document.getElementById(what).innerHTML = to;
 }
 
+function getWarn() {
+  warn = document.getElementById("warning");
+  request.get(
+    "https://cdn.ampix.hu/updater/info.txt",
+    function (err, res, body) {
+      if (body === "nincs") {
+        hide("warning-body");
+      } else {
+        show("warning-body");
+        warn.innerHTML = body;
+      }
+    }
+  );
+}
+
 function updatepack(type) {
   let id = getId(type);
   setTimeout(() => {
@@ -182,6 +197,7 @@ function loadbuttons(item, mode) {
 
 function load() {
   modpacks.forEach(loadmodpack);
+  getWarn();
 }
 
 load();
