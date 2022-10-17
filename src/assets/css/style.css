@@ -200,6 +200,22 @@ body {
   height: 50px;
 }
 
+.warning {
+  background-color: #282828;
+  border-radius: 5px;
+  border-left: #00897b solid 15px;
+  color: white !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .szunetfent {
   margin-top: 50px;
 }
@@ -228,11 +244,6 @@ body {
   text-shadow: 2.5px 2.5px 7.5px #d60000;
 }
 
-.warning {
-  color: red;
-  text-shadow: 0px 0px 5px #8e0000 !important;
-}
-
 .specbutton {
   background-color: #444;
   color: white;
@@ -256,11 +267,30 @@ body {
 .assetbtn:hover {
   background-color: #444;
   color: #d60000 !important;
-  padding: 5px;
+  padding: 10px;
   color: white;
   border: none;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.warnbutton {
+  position: absolute;
+  top: 20px;
+  right: 22%;
+  font-size: larger;
+  color: #d60000;
+  background-color: #282828;
+  padding: 3px 10px;
+  font-weight: bolder;
+  border: none;
+  margin-top: 40px;
+}
+
+.warnbutton:hover {
+  cursor: pointer;
+  background-color: #d60000;
+  color: white;
 }
 
 .donebutton {
