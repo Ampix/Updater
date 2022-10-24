@@ -3,30 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Ampix Updater</title>
+    <title>
+      Ampix Updater v<%= version %> <% if (dev) { %> DEV MÓD <% } %>
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
+    <div id="app"></div>
     <!--<div id="cursor" class="cursor hide"></div>-->
-    
-    <header>
-      <nav class="titlebar">
-      <div class="titlebar-left">
-        <h3 class="titlebar-text">Ampix Updater v<%= version %> <% if (dev) { %>
-         DEV MÓD
-        <% } %></h3>
-      </div>
-      <div class="titlebar-nav">
-        <a href="home.ejs" class="titlebar-nav-links" id="Kezdőlap">Kezdőlap</a>
-        <a href="settings.ejs" class="titlebar-nav-links" id="Beállítások">Beállítások</a>
-      </div>
-      <div class="titlebar-right">
-        <span class="titlebar-link" id="minimize">&minus;</span>
-        <span class="titlebar-link" id="close-app">&#10006</span>
-      </div>
-    </nav>
-    </header>
+    <script type="module" src="dist/updater.es.js"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
     <script>
       /*const cursor = document.getElementById("cursor");
 
@@ -45,6 +32,5 @@
         }, 500);
       });*/
     </script>
-    <script src="assets/scripts/window.js"></script>
   </body>
 </html>
