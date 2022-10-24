@@ -31,16 +31,15 @@
 }
 
 .warnbutton {
-  position: absolute;
-  top: 20px;
-  right: 22%;
+  //position: absolute;
   font-size: larger;
   color: $primary;
   background-color: #282828;
   padding: 3px 10px;
   font-weight: bolder;
   border: none;
-  margin-top: 40px;
+  transition: 0.25s;
+  margin-top: 5px;
 }
 
 .warnbutton:hover {

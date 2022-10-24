@@ -1,19 +1,22 @@
-const { app, BrowserWindow, dialog, ipcMain, shell } = require("electron");
+const {app, BrowserWindow, dialog, ipcMain, shell} = require("electron");
 const remoteMain = require("@electron/remote/main");
 remoteMain.initialize();
 const path = require("path");
 const ejse = require("ejs-electron");
-const { autoUpdater } = require("electron-updater");
-const isPackaged = require("electron-is-packaged").isPackaged;
+const {autoUpdater} = require("electron-updater");
+const {Octokit} = require("octokit");
+const fs = require("fs");
+const os = require("os");
+const username = os.userInfo().username;
+
+const octokit = new Octokit({
+  auth: "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",
+});
 
 var win;
 var splash;
-var dev = false;
+var dev = !app.isPackaged;
 app.disableHardwareAcceleration();
-
-if (isPackaged === false) {
-  dev = true;
-}
 
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -80,7 +83,7 @@ async function createWindow() {
   });
   splash.loadFile("src/splash.ejs");
   splash.center();
-  win.loadFile("src/home.ejs");
+  win.loadFile("src/main.ejs");
   win.center();
   remoteMain.enable(win.webContents);
   if (!dev) {
@@ -98,9 +101,45 @@ app.whenReady().then(async () => {
   if (dev) loader();
 });
 
-function loader() {
+async function loader() {
   splash.close();
   win.show();
+  await octokit
+    .request("GET /repos/{owner}/{repo}/releases/latest", {
+      owner: "Ampix",
+      repo: "Updater-Release",
+    })
+    .then((Response) => {
+      // * console.log(Response.data.name); verzió
+      // * console.log(Response.data.body); log
+      let configdir =
+        "C:\\Users\\" + username + "\\AppData\\Roaming\\.ampixupdater\\";
+      fs.exists(configdir + "ver.txt", (vari) => {
+        if (vari) {
+          fs.readFile(configdir + "ver.txt", "utf8", (err, data) => {
+            if (data != Response.data.name) {
+              let stuff = {
+                name: Response.data.name,
+                log: Response.data.body,
+              };
+              win.webContents.send("showupdateinfo", stuff);
+              fs.writeFile(
+                configdir + "ver.txt",
+                Response.data.name,
+                (err2) => {}
+              );
+            }
+          });
+        } else {
+          let stuff = {
+            name: Response.data.name,
+            log: Response.data.body,
+          };
+          win.webContents.send("showupdateinfo", stuff);
+          fs.writeFile(configdir + "ver.txt", Response.data.name, (err3) => {});
+        }
+      });
+    });
   //shell.openPath("C:\\Users\\" + username + "\\AppData\\Roaming");
 }
 

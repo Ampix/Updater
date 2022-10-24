@@ -134,3 +134,31 @@
   justify-content: center;
   text-align: center;
 }
+
+.updatebox {
+  margin: auto !important;
+  border: white solid 2px;
+  border-radius: 15px;
+  background-color: #111;
+  color: white;
+  text-align: center;
+  button {
+    background-color: #4fb9af;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.5s;
+  }
+  button:hover {
+    background-color: #025043;
+    color: whitesmoke;
+  }
+}
+
+.updatebox::backdrop {
+  background-color: #036c5f;
+  opacity: 0.25;
+}

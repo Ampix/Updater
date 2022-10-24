@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
@@ -216,6 +215,34 @@ body {
   text-align: center;
 }
 
+.updatebox {
+  margin: auto !important;
+  border: white solid 2px;
+  border-radius: 15px;
+  background-color: #111;
+  color: white;
+  text-align: center;
+}
+.updatebox button {
+  background-color: #4fb9af;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.5s;
+}
+.updatebox button:hover {
+  background-color: #025043;
+  color: whitesmoke;
+}
+
+.updatebox::backdrop {
+  background-color: #036c5f;
+  opacity: 0.25;
+}
+
 .szunetfent {
   margin-top: 50px;
 }
@@ -275,16 +302,14 @@ body {
 }
 
 .warnbutton {
-  position: absolute;
-  top: 20px;
-  right: 22%;
   font-size: larger;
   color: #d60000;
   background-color: #282828;
   padding: 3px 10px;
   font-weight: bolder;
   border: none;
-  margin-top: 40px;
+  transition: 0.25s;
+  margin-top: 5px;
 }
 
 .warnbutton:hover {
@@ -376,6 +401,9 @@ body {
   text-decoration: none;
   color: white;
   font-weight: 900;
+  background-color: #18191a;
+  border: none;
+  cursor: pointer;
   margin-left: 20px;
   align-items: center;
   text-align: center;
@@ -394,10 +422,14 @@ body {
 }
 
 .titlebar-link {
-  padding: 15px;
   cursor: pointer;
-  font-size: 1.4rem;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  font-size: x-large;
   -webkit-app-region: no-drag;
+  align-content: center;
+  margin-right: 10px;
 }
 
 .titlebar-link:hover {
