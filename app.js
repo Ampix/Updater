@@ -94,10 +94,9 @@ async function createWindow() {
   ejse.data("dev", dev);
 }
 
-app.whenReady().then(async () => {
+app.whenReady().then(() => {
   createWindow();
-  await sleep(500);
-  autoUpdater.checkForUpdatesAndNotify();
+  if (!dev) autoUpdater.checkForUpdatesAndNotify();
   if (dev) loader();
 });
 
@@ -123,11 +122,13 @@ async function loader() {
                 log: Response.data.body,
               };
               win.webContents.send("showupdateinfo", stuff);
-              fs.writeFile(
-                configdir + "ver.txt",
-                Response.data.name,
-                (err2) => {}
-              );
+              if (!dev) {
+                fs.writeFile(
+                  configdir + "ver.txt",
+                  Response.data.name,
+                  (err2) => {}
+                );
+              }
             }
           });
         } else {
@@ -136,7 +137,13 @@ async function loader() {
             log: Response.data.body,
           };
           win.webContents.send("showupdateinfo", stuff);
-          fs.writeFile(configdir + "ver.txt", Response.data.name, (err3) => {});
+          if (!dev) {
+            fs.writeFile(
+              configdir + "ver.txt",
+              Response.data.name,
+              (err3) => {}
+            );
+          }
         }
       });
     });
@@ -153,7 +160,6 @@ autoUpdater.on("checking-for-update", () => {});
 autoUpdater.on("update-available", (info) => {});
 
 autoUpdater.on("update-not-available", async (info) => {
-  await sleep(500);
   loader();
 });
 

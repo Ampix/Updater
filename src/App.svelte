@@ -2,10 +2,8 @@
   // @ts-nocheck
   const os = require("os");
   var fs = require("fs");
-  const minus = document.getElementById("minimize");
   const request = require("request");
   const decompress = require("decompress");
-  const close_app = document.getElementById("close-app");
   const {ipcRenderer, shell, webFrame} = require("electron");
   let warning = "Betöltés";
   let canswitchpage = true;
@@ -103,7 +101,6 @@
   }
   let configdir =
     "C:\\Users\\" + username + "\\AppData\\Roaming\\.ampixupdater\\";
-  const path = require("path");
   let page = "Kezdőlap";
   window.addEventListener("load", (event) => {
     document.getElementById("Kezdőlap").classList.add("active");
@@ -114,7 +111,6 @@
   }
 
   function getWarn() {
-    let warn = document.getElementById("warning");
     request.get(
       "https://cdn.ampix.hu/updater/info.txt",
       function (err, res, body) {
@@ -129,50 +125,52 @@
   }
 
   function updatepack(type) {
-    let id = getId(type);
-    setTimeout(() => {
-      var all = 0;
-      var current = 0;
-      var progress = document.getElementById("progfill-" + type);
-      const loc = modpack_folders[id];
-      fs.rmSync(loc + "\\ampixupdater", {recursive: true, force: true});
-      fs.rmSync(loc + "\\mods", {recursive: true, force: true});
-      fs.rmSync(loc + "\\base.zip", {recursive: true, force: true});
-      fs.mkdirSync(loc + "\\ampixupdater");
-      status("status-" + type, "Letöltés...");
-      canswitchpage = false;
-      progress.style.width = "0%";
-      show("progress-" + type);
-      show("status-" + type);
-      hide("downloadpack-" + type);
-      hide("delpack-" + type);
-      var req = request({
-        method: "GET",
-        uri: "https://cdn.ampix.hu/" + type + "/base.zip",
-      });
-      req.pipe(fs.createWriteStream(loc + "\\base.zip"));
-      req.on("response", function (data) {
-        all = data.headers["content-length"];
-      });
-      req.on("data", function (chunk) {
-        current += chunk.length;
-        var percent = (current * 100) / all;
-        progress.style.width = percent.toFixed(0) + "%";
-      });
-      req.on("end", async function () {
-        status("status-" + type, "Kicsomagolás...");
-        hide("progress-" + type);
-        decompress(loc + "\\base.zip", loc + "\\").then(async (files) => {
-          fs.rmSync(loc + "\\base.zip", {force: true});
-          request("https://cdn.ampix.hu/" + type + "/ver.txt")
-            .pipe(fs.createWriteStream(loc + "\\ampixupdater\\ver.txt"))
-            .on("close", async function () {
-              canswitchpage = true;
-              load();
-            });
+    if (canswitchpage) {
+      let id = getId(type);
+      setTimeout(() => {
+        var all = 0;
+        var current = 0;
+        var progress = document.getElementById("progfill-" + type);
+        const loc = modpack_folders[id];
+        fs.rmSync(loc + "\\ampixupdater", {recursive: true, force: true});
+        fs.rmSync(loc + "\\mods", {recursive: true, force: true});
+        fs.rmSync(loc + "\\base.zip", {recursive: true, force: true});
+        fs.mkdirSync(loc + "\\ampixupdater");
+        status("status-" + type, "Letöltés...");
+        canswitchpage = false;
+        progress.style.width = "0%";
+        show("progress-" + type);
+        show("status-" + type);
+        hide("downloadpack-" + type);
+        hide("delpack-" + type);
+        var req = request({
+          method: "GET",
+          uri: "https://cdn.ampix.hu/" + type + "/base.zip",
         });
-      });
-    }, 100);
+        req.pipe(fs.createWriteStream(loc + "\\base.zip"));
+        req.on("response", function (data) {
+          all = data.headers["content-length"];
+        });
+        req.on("data", function (chunk) {
+          current += chunk.length;
+          var percent = (current * 100) / all;
+          progress.style.width = percent.toFixed(0) + "%";
+        });
+        req.on("end", async function () {
+          status("status-" + type, "Kicsomagolás...");
+          hide("progress-" + type);
+          decompress(loc + "\\base.zip", loc + "\\").then(async (files) => {
+            fs.rmSync(loc + "\\base.zip", {force: true});
+            request("https://cdn.ampix.hu/" + type + "/ver.txt")
+              .pipe(fs.createWriteStream(loc + "\\ampixupdater\\ver.txt"))
+              .on("close", async function () {
+                canswitchpage = true;
+                load();
+              });
+          });
+        });
+      }, 100);
+    }
   }
 
   async function delpack(type) {
