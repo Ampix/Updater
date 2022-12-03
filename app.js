@@ -29,14 +29,14 @@ let dir
 ipcMain.on("selectdir", function (event, type) {
     dir = dialog
         .showOpenDialog(win, {
-            title: type + " Mappaválasztás",
+            title: type.title + " Mappaválasztás",
             properties: ["openDirectory"],
         })
         .then((result) => {
             if (result.canceled) return
             let mappa = result.filePaths[0]
             let stuff = {
-                type: type,
+                type: type.name,
                 folder: mappa,
             }
             win.webContents.send("selectdirback", stuff)

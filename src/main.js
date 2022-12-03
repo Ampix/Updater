@@ -42,10 +42,10 @@ ipcRenderer.on("selectdirback", function (evt, minden) {
     }
 })
 ipcRenderer.on("showupdateinfo", function (evt, stuff) {
-    console.log("asd")
     hasupdate = true
+    console.log("asd")
     let kacko = document.createElement("div")
-    kacko.innerHTML = `<h1 class="spectext" style="margin-bottom: 20px !important">Frissitési napló v${stuff.name}</h1><md-block>${stuff.log}</md-block>`
+    kacko.innerHTML = `<h1 class="spectext" style="margin-bottom: 20px !important">Frissitési napló v${stuff.name}</h1><md-block style="text-align: left !important;">${stuff.log}</md-block>`
     document.getElementById("updatetext").appendChild(kacko)
     setTimeout(() => {
         doModal("open")
@@ -53,7 +53,11 @@ ipcRenderer.on("showupdateinfo", function (evt, stuff) {
 })
 
 function setfolder(type) {
-    ipcRenderer.send("selectdir", type)
+    let id = getId(type)
+    setTimeout(async () => {
+        let cuccos = { name: type, title: modpacks.title[id] }
+        ipcRenderer.send("selectdir", cuccos)
+    }, 100)
 }
 
 function loadmodpack(item) {
@@ -328,7 +332,7 @@ function loadtext() {
         box.innerHTML += `<div class="element">
             <h3>${modpacks.title[i]} Mappája:</h3>
             <h3 id="${modpack}-dir" class="foldertext">Betöltés...</h3>
-            <button onclick="changeDir('${modpack}')">Módosítás</button>
+            <button onclick="setfolder('${modpack}')">Módosítás</button>
           </div>`
         fs.readFile(configdir + modpack + ".txt", "utf8", function (err, data) {
             if (!data) {
@@ -339,10 +343,6 @@ function loadtext() {
             }
         })
     }
-}
-
-function changeDir(type) {
-    ipcRenderer.send("selectdir", type)
 }
 
 function sleep(ms) {
@@ -362,7 +362,6 @@ async function load() {
                 hide("loadbox")
                 canswitchpage = true
                 response.json().then((data) => {
-                    console.log(data)
                     modpacks = data
                     modpack_folders = []
                     modpacks.name.forEach(loadmodpack)
