@@ -1,36 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>
-      Ampix Updater v<%= version %> <% if (dev) { %> DEV MÓD <% } %>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-  <body>
-    <div id="app"></div>
-    <!--<div id="cursor" class="cursor hide"></div>-->
-    <script type="module" src="dist/updater.es.js"></script>
-    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-    <script>
-      /*const cursor = document.getElementById("cursor");
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Ampix Updater</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="titlebar">
+                <div class="titlebar-left">
+                    <h5 class="titlebar-text">
+                        Ampix Updater v<%= version %> <% if (dev) { %> DEV MÓD
+                        <% } %>
+                    </h5>
+                </div>
+                <div class="titlebar-nav">
+                    <button
+                        onclick='switchPage("Kezdőlap")'
+                        class="titlebar-nav-links"
+                        id="Kezdőlap"
+                    >
+                        Kezdőlap
+                    </button>
+                    <button
+                        onclick='switchPage("Beállítások")'
+                        class="titlebar-nav-links"
+                        id="Beállítások"
+                    >
+                        Beállítások
+                    </button>
+                </div>
+                <div class="titlebar-right">
+                    <button
+                        onclick="minimize()"
+                        class="titlebar-link"
+                        id="minimize"
+                    >
+                        &minus;
+                    </button>
+                    <button
+                        onclick="closeapp()"
+                        class="titlebar-link"
+                        id="close-app"
+                    >
+                        &#10006;
+                    </button>
+                </div>
+            </nav>
+        </header>
+        <div class="minden" id="minden">
+            <dialog class="updatebox" id="updatebox">
+                <!-- * <md-block>{updatedes}</md-block> Ez csak illúzió -->
+                <div id="updatetext">
+                    <!--<h1>Cs</h1>-->
+                </div>
+                <button onclick='doModal("close")'>Bezárás</button>
+            </dialog>
+            <div id="warning-body" class="warning hide">
+                <h1>Információ</h1>
+                <h4 id="warning">Nincs</h4>
+                <button onclick='hide("warning-body")' class="warnbutton">
+                    X
+                </button>
+            </div>
+            <div class="superbox">
+                <div id="Kezdőlap-box">
+                    <div class="verbox column" id="verbox">
+                        <h2>Frissitéshez: CTRL+R</h2>
+                        <div id="loadbox" class="loadbox">
+                            <h2 id="loadbox-text">Betöltés...</h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="Beállítások-box" class="hide">
+                    <h2>Beállítások</h2>
+                    <div class="settbox" id="settbox"></div>
+                </div>
+            </div>
+        </div>
 
-      document.addEventListener("mousemove", (e) => {
-        cursor.classList.remove("hide");
-        cursor.setAttribute(
-          "style",
-          "top: " + (e.pageY - 20) + "px; left: " + (e.pageX - 20) + "px;"
-        );
-      });
-      document.addEventListener("click", () => {
-        cursor.classList.add("expand");
-
-        setTimeout(() => {
-          cursor.classList.remove("expand");
-        }, 500);
-      });*/
-    </script>
-  </body>
+        <!--<div id="cursor" class="cursor hide"></div>-->
+        <script src="main.js"></script>
+        <script
+            type="module"
+            src="https://md-block.verou.me/md-block.js"
+        ></script>
+    </body>
 </html>

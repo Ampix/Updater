@@ -1,21 +1,22 @@
 @use "../datas/assets" as *;
 
 .progress {
-  width: 200px;
-  height: 15px;
-  margin-top: 70px;
-  margin-bottom: 10px;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  border-radius: 5px;
-  background-color: #555;
-  overflow: hidden;
+    width: 50%;
+    height: 20px;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    margin-left: 25%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #555;
+    overflow: hidden;
 }
 
 .progress_fill {
-  transition: 0.5s;
-  width: 0%;
-  height: 100%;
-  background-color: $primary;
+    transition: 0.5s;
+    width: 0%;
+    height: 100%;
+    background-color: $primary;
 }
