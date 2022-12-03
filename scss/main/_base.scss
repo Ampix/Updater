@@ -1,56 +1,51 @@
-@use "../datas/assets" as *;
+@use '../datas/assets' as *;
 
 * {
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 body {
-  background-color: $base-bc;
-  //cursor: none;
+    background-color: $base-bc;
+    //cursor: none;
 }
 
 .center {
-  position: absolute;
-  left: 50%; /* relative to nearest positioned ancestor or body element */
-  top: 50%; /*  relative to nearest positioned ancestor or body element */
-  transform: translate(-50%, -50%); /* relative to element's height & width */
+    position: absolute;
+    left: 50%; /* relative to nearest positioned ancestor or body element */
+    top: 50%; /*  relative to nearest positioned ancestor or body element */
+    transform: translate(-50%, -50%); /* relative to element's height & width */
 }
 
 .container {
-  max-width: 1600px;
-  margin: 0 auto;
-  width: 100%;
-  padding-left: 128px;
-  padding-right: 128px;
-}
-
-.img1 {
-  background-image: url("../img/bgimg1.png");
-  background-repeat: no-repeat;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 128px;
+    padding-right: 128px;
 }
 
 ::selection {
-  background-color: $primary;
+    background-color: $primary;
 }
 
 main {
-  section.banner {
-    color: white;
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    section.banner {
+        color: white;
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
 
-    .container {
-      width: 100%;
-      h1 {
-        font-size: 72px;
-      }
+        .container {
+            width: 100%;
+            h1 {
+                font-size: 72px;
+            }
+        }
     }
-  }
 }
 
 .hide {
-  display: none !important;
+    display: none !important;
 }

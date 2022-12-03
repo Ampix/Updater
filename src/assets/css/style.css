@@ -11,9 +11,12 @@ body {
 
 .center {
   position: absolute;
-  left: 50%; /* relative to nearest positioned ancestor or body element */
-  top: 50%; /*  relative to nearest positioned ancestor or body element */
-  transform: translate(-50%, -50%); /* relative to element's height & width */
+  left: 50%;
+  /* relative to nearest positioned ancestor or body element */
+  top: 50%;
+  /*  relative to nearest positioned ancestor or body element */
+  transform: translate(-50%, -50%);
+  /* relative to element's height & width */
 }
 
 .container {
@@ -22,11 +25,6 @@ body {
   width: 100%;
   padding-left: 128px;
   padding-right: 128px;
-}
-
-.img1 {
-  background-image: url("../img/bgimg1.png");
-  background-repeat: no-repeat;
 }
 
 ::selection {
@@ -99,40 +97,11 @@ body {
   text-shadow: 1px 1px 1px black;
 }
 
-.twigmod2box {
-  background-image: url("../img/logo/twigmod2.png");
-  background-repeat: no-repeat;
-  background-size: 75px;
-  background-position: center 10%;
-  padding: 25px;
-  border-radius: 10px;
-}
-.twigmod2box button {
-  margin-top: 80px;
-}
-
-.builderbox {
-  background-image: url("../img/logo/ampixbuilders.png");
-  background-repeat: no-repeat;
-  background-size: 75px;
-  background-position: center 10%;
-  padding: 25px;
-  border-radius: 10px;
-}
-.builderbox button {
-  margin-top: 80px;
-}
-
-.maniabox {
-  background-image: url("../img/logo/ampixmania.png");
-  background-repeat: no-repeat;
-  background-size: 75px;
-  background-position: center 10%;
-  padding: 25px;
-  border-radius: 10px;
-}
-.maniabox button {
-  margin-top: 80px;
+.loadbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .superbox {
@@ -149,7 +118,6 @@ body {
   margin-top: 20px;
   border-radius: 25px;
   padding: 20px;
-  display: flex;
 }
 
 .verbox .twigmod2box,
@@ -181,7 +149,7 @@ body {
   margin-right: 20px;
   max-width: 500px;
   overflow: auto;
-  background-color: rgb(10, 10, 10);
+  background-color: #0a0a0a;
   padding: 10px;
   border-radius: 10px;
 }
@@ -319,7 +287,7 @@ body {
 }
 
 .donebutton {
-  background: url("../img/icons/done.png") no-repeat;
+  background: url("https://cdn.ampix.hu/updater/icons/done.png") no-repeat;
   background-size: 50px;
   background-position: center;
   cursor: default !important;
@@ -330,25 +298,25 @@ body {
 }
 
 .updatebutton {
-  background: url("../img/icons/download.png") no-repeat;
+  background: url("https://cdn.ampix.hu/updater/icons/download.png") no-repeat;
   background-size: 50px;
   background-position: center;
 }
 
 .refreshbutton {
-  background: url("../img/icons/refresh.png") no-repeat;
+  background: url("https://cdn.ampix.hu/updater/icons/refresh.png") no-repeat;
   background-size: 50px;
   background-position: center;
 }
 
 .delbutton {
-  background: url("../img/icons/delete.png") no-repeat;
+  background: url("https://cdn.ampix.hu/updater/icons/delete.png") no-repeat;
   background-size: 50px;
   background-position: center;
 }
 
 .folderbutton {
-  background: url("../img/icons/folder.png") no-repeat;
+  background: url("https://cdn.ampix.hu/updater/icons/folder.png") no-repeat;
   background-size: 50px;
   background-position: center;
 }
@@ -439,15 +407,17 @@ body {
 
 .titlebar-text {
   font-weight: 1000;
+  font-size: larger;
   text-align: center;
   margin-left: 20px;
 }
 
 .progress {
-  width: 200px;
-  height: 15px;
+  width: 50%;
+  height: 20px;
   margin-top: 70px;
   margin-bottom: 10px;
+  margin-left: 25%;
   align-items: center;
   text-align: center;
   justify-content: center;
