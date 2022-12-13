@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
   margin: 0;
@@ -212,12 +213,78 @@ body {
   opacity: 0.25;
 }
 
+.multibox {
+  background-color: #00897b;
+  margin-top: 5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  padding: 2rem;
+}
+.multibox .link {
+  text-decoration: none;
+  color: #d60000;
+}
+.multibox button {
+  background-color: #444;
+  color: white;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bolder;
+  border: none;
+  transition: 0.5s;
+}
+.multibox button:hover {
+  background-color: #4fb9af;
+  cursor: pointer;
+}
+
 .szunetfent {
   margin-top: 50px;
 }
 
 .kisszunetfent {
   margin-top: 20px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.checkbox__input {
+  display: none;
+}
+
+.checkbox__box {
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid #cccccc;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.checkbox__box::after {
+  content: "✔";
+  color: white;
+  transform: scale(0);
+  transition: transform 0.15s;
+}
+
+.checkbox__input:checked + .checkbox__box {
+  background-color: #4fb9af;
+  border-color: #4fb9af;
+}
+
+.checkbox__input:checked + .checkbox__box::after {
+  transform: scale(1);
 }
 
 .version-text {

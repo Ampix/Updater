@@ -67,16 +67,76 @@
             </div>
             <div class="superbox">
                 <div id="Kezdőlap-box">
-                    <div class="verbox column" id="verbox">
+                    <div class="verbox column hide" id="verbox">
                         <h2>Frissitéshez: CTRL+R</h2>
                         <div id="loadbox" class="loadbox">
                             <h2 id="loadbox-text">Betöltés...</h2>
                         </div>
+                        <div id="modpacks"></div>
                     </div>
                 </div>
                 <div id="Beállítások-box" class="hide">
                     <h2>Beállítások</h2>
                     <div class="settbox" id="settbox"></div>
+                </div>
+                <div id="multi-box" class="hide multibox">
+                    <div id="multi-base">
+                        <h1>MultiMC Telepítési útmutató</h1>
+                        <h3>
+                            A MultiMC használatával képes vagy Minecraft
+                            launcher nélkül rögtön játszani a modpackekkel.
+                        </h3>
+                        <button onclick="openLink('https:\\ampix.hu/updater')">
+                            További információ
+                        </button>
+                        <h2 style="margin-top: 2rem">Telepítési útvonal:</h2>
+                        <h3 style="background-color: #232323" id="multi-folder">
+                            Betöltés
+                        </h3>
+                        <button
+                            onclick="setfolder('multimc')"
+                            style="margin-top: 0.5rem"
+                        >
+                            Megváltoztatás
+                        </button>
+                        <label
+                            class="checkbox"
+                            for="multimcModeId"
+                            style="margin-top: 1rem"
+                        >
+                            <input
+                                type="checkbox"
+                                name="multimcModeName"
+                                id="multimcModeId"
+                                class="checkbox__input"
+                            />
+                            <div class="checkbox__box"></div>
+                            <h3>Ebben a mappában már van MultiMC</h3>
+                        </label>
+                        <h4>
+                            Ezt bepipálva a rendszer nem fog a Telepítési
+                            útvonalra MultiMC-t telepíteni, csak beállítja azt a
+                            MultiMC mappájának. Vagyus ebben az esetben a már
+                            létező MultiMC elérési útját kell megadni telepítési
+                            útvonalként.
+                        </h4>
+                        <button
+                            onclick="installmmc()"
+                            style="margin-top: 0.5rem; font-size: 1.5rem"
+                        >
+                            MultiMC Telepítése
+                        </button>
+                    </div>
+                    <div id="multi-install" class="hide">
+                        <h1>MultiMC Telepítése</h1>
+                        <h2 id="multi-status"></h2>
+                        <div class="progress" id="multi-progress">
+                            <div
+                                class="progress_fill"
+                                id="multi-progfill"
+                            ></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
