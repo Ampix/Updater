@@ -132,3 +132,30 @@
     background-color: #036c5f;
     opacity: 0.25;
 }
+
+.multibox {
+    background-color: #00897b;
+    margin-top: 5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    padding: 2rem;
+
+    .link {
+        text-decoration: none;
+        color: $primary;
+    }
+
+    button {
+        background-color: #444;
+        color: white;
+        padding: 0.5rem;
+        color: white;
+        font-weight: bolder;
+        border: none;
+        transition: 0.5s;
+    }
+    button:hover {
+        background-color: #4fb9af;
+        cursor: pointer;
+    }
+}
