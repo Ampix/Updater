@@ -1,7 +1,7 @@
 {
     "name": "ampixupdater",
     "version": "3.1.0",
-    "description": "",
+    "description": "Az Ampix saját Modpack frissitője",
     "main": "app.js",
     "scripts": {
         "start": "run-p electron dev",
@@ -23,6 +23,7 @@
     "homepage": "https://github.com/Ampix/Updater#readme",
     "dependencies": {
         "@electron/remote": "^2.0.8",
+        "@sveltejs/vite-plugin-svelte": "^2.0.2",
         "decompress": "^4.2.1",
         "ejs": "^3.1.8",
         "ejs-electron": "^2.1.1",
@@ -34,7 +35,10 @@
         "npm-run-all": "^4.1.5",
         "octokit": "^2.0.9",
         "os": "^0.1.2",
-        "request": "^2.88.2"
+        "request": "^2.88.2",
+        "svelte": "^3.55.0",
+        "svelte-preprocess": "^5.0.0",
+        "vite": "^4.0.4"
     },
     "devDependencies": {
         "electron": "^20.0.2",

@@ -159,3 +159,27 @@
         cursor: pointer;
     }
 }
+
+.multimcbox {
+    button {
+        background-color: #444;
+        color: white;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bolder;
+        border: none;
+        transition: 0.5s;
+        img {
+            width: 2em;
+            height: 2em;
+        }
+    }
+    button:hover {
+        background-color: #357a73;
+        cursor: pointer;
+    }
+}
