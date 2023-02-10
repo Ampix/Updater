@@ -1,9 +1,9 @@
-@use '../datas/assets' as *;
+@use "../datas/assets" as *;
 
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 body {
     background-color: $base-bc;

@@ -11,42 +11,17 @@
         <header>
             <nav class="titlebar">
                 <div class="titlebar-left">
-                    <h5 class="titlebar-text">
-                        Ampix Updater v<%= version %> <% if (dev) { %> DEV MÓD
-                        <% } %>
-                    </h5>
+                    <h5 class="titlebar-text">Ampix Updater v<%= version %> <% if (dev) { %> DEV MÓD <% } %></h5>
                 </div>
                 <div class="titlebar-nav">
-                    <button
-                        onclick='switchPage("Kezdőlap")'
-                        class="titlebar-nav-links"
-                        id="Kezdőlap"
-                    >
-                        Kezdőlap
-                    </button>
-                    <button
-                        onclick='switchPage("Beállítások")'
-                        class="titlebar-nav-links"
-                        id="Beállítások"
-                    >
-                        Beállítások
-                    </button>
+                    <button onclick='switchPage("Kezdőlap")' class="titlebar-nav-links" id="Kezdőlap">Kezdőlap</button>
+                    <button onclick='switchPage("Beállítások")' class="titlebar-nav-links" id="Beállítások">Beállítások</button>
+                    <button onclick="startmmc()" class="titlebar-nav-links" id="Beállítások">MMCStart</button>
+                    <button onclick="console.log(multimc)" class="titlebar-nav-links" id="Beállítások">MMCLoc</button>
                 </div>
                 <div class="titlebar-right">
-                    <button
-                        onclick="minimize()"
-                        class="titlebar-link"
-                        id="minimize"
-                    >
-                        &minus;
-                    </button>
-                    <button
-                        onclick="closeapp()"
-                        class="titlebar-link"
-                        id="close-app"
-                    >
-                        &#10006;
-                    </button>
+                    <button onclick="minimize()" class="titlebar-link" id="minimize">&minus;</button>
+                    <button onclick="closeapp()" class="titlebar-link" id="close-app">&#10006;</button>
                 </div>
             </nav>
         </header>
@@ -61,14 +36,16 @@
             <div id="warning-body" class="warning hide">
                 <h1>Információ</h1>
                 <h4 id="warning">Nincs</h4>
-                <button onclick='hide("warning-body")' class="warnbutton">
-                    X
-                </button>
+                <button onclick='hide("warning-body")' class="warnbutton">X</button>
             </div>
             <div class="superbox">
                 <div id="Kezdőlap-box">
                     <div class="verbox column hide" id="verbox">
-                        <h2>Frissitéshez: CTRL+R</h2>
+                        <div class="multimcbox">
+                            <h2>MultiMC</h2>
+                            <i class="fa-regular fa-play"></i>
+                            <button class="multimcstart"><img src="https://cdn.ampix.hu/updater/icons/play.png" alt="CsakANyád" /> MultiMC Indítása</button>
+                        </div>
                         <div id="loadbox" class="loadbox">
                             <h2 id="loadbox-text">Betöltés...</h2>
                         </div>
@@ -82,59 +59,24 @@
                 <div id="multi-box" class="hide multibox">
                     <div id="multi-base">
                         <h1>MultiMC Telepítési útmutató</h1>
-                        <h3>
-                            A MultiMC használatával képes vagy Minecraft
-                            launcher nélkül rögtön játszani a modpackekkel.
-                        </h3>
-                        <button onclick="openLink('https:\\ampix.hu/updater')">
-                            További információ
-                        </button>
+                        <h3>A MultiMC használatával képes vagy Minecraft launcher nélkül rögtön játszani a modpackekkel.</h3>
+                        <button onclick="openLink('https:\\ampix.hu/updater')">További információ</button>
                         <h2 style="margin-top: 2rem">Telepítési útvonal:</h2>
-                        <h3 style="background-color: #232323" id="multi-folder">
-                            Betöltés
-                        </h3>
-                        <button
-                            onclick="setfolder('multimc')"
-                            style="margin-top: 0.5rem"
-                        >
-                            Megváltoztatás
-                        </button>
-                        <label
-                            class="checkbox"
-                            for="multimcModeId"
-                            style="margin-top: 1rem"
-                        >
-                            <input
-                                type="checkbox"
-                                name="multimcModeName"
-                                id="multimcModeId"
-                                class="checkbox__input"
-                            />
+                        <h3 style="background-color: #232323" id="multi-folder">Betöltés</h3>
+                        <button onclick="setfolder('multimc')" style="margin-top: 0.5rem">Megváltoztatás</button>
+                        <label class="checkbox" for="multimcModeId" style="margin-top: 1rem">
+                            <input type="checkbox" name="multimcModeName" id="multimcModeId" class="checkbox__input" />
                             <div class="checkbox__box"></div>
                             <h3>Ebben a mappában már van MultiMC</h3>
                         </label>
-                        <h4>
-                            Ezt bepipálva a rendszer nem fog a Telepítési
-                            útvonalra MultiMC-t telepíteni, csak beállítja azt a
-                            MultiMC mappájának. Vagyus ebben az esetben a már
-                            létező MultiMC elérési útját kell megadni telepítési
-                            útvonalként.
-                        </h4>
-                        <button
-                            onclick="installmmc()"
-                            style="margin-top: 0.5rem; font-size: 1.5rem"
-                        >
-                            MultiMC Telepítése
-                        </button>
+                        <h4>Ezt bepipálva a rendszer nem fog a Telepítési útvonalra MultiMC-t telepíteni, csak beállítja azt a MultiMC mappájának. Vagyus ebben az esetben a már létező MultiMC elérési útját kell megadni telepítési útvonalként.</h4>
+                        <button onclick="installmmc()" style="margin-top: 0.5rem; font-size: 1.5rem">MultiMC Telepítése</button>
                     </div>
                     <div id="multi-install" class="hide">
                         <h1>MultiMC Telepítése</h1>
                         <h2 id="multi-status"></h2>
                         <div class="progress" id="multi-progress">
-                            <div
-                                class="progress_fill"
-                                id="multi-progfill"
-                            ></div>
+                            <div class="progress_fill" id="multi-progfill"></div>
                         </div>
                     </div>
                 </div>
@@ -143,9 +85,6 @@
 
         <!--<div id="cursor" class="cursor hide"></div>-->
         <script src="main.js"></script>
-        <script
-            type="module"
-            src="https://md-block.verou.me/md-block.js"
-        ></script>
+        <script type="module" src="https://md-block.verou.me/md-block.js"></script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-@use '../datas/assets' as *;
+@use "../datas/assets" as *;
 
 .cursor {
     position: absolute;
@@ -13,7 +13,7 @@
 }
 
 .cursor::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 40px;
     height: 40px;
