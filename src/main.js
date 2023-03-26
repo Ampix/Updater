@@ -3,10 +3,32 @@ var fs = require("fs");
 const { ipcRenderer, shell, webFrame } = require("electron");
 let canswitchpage = false;
 let page = "Kezdőlap";
-const { exec } = require("child_process");
+const request = require("request");
+const decompress = require("decompress");
+const https = require("https");
+const username = os.userInfo().username;
+var mv = require("mv");
+var givenameform = document.getElementById("givenameform");
+var givenameforminput = document.getElementById("instancename");
+var givenamebox = document.getElementById("givenamebox");
 //  minus.addEventListener("click", minimize);
 //  close_app.addEventListener("click", closeapp);
 
+function gavename(name) {
+    console.log(name);
+}
+
+givenameform.addEventListener("submit", (event) => {
+    event.preventDefault();
+    gavename(givenameforminput.value);
+    doModal("close", "givenamebox");
+});
+
+givenamebox.addEventListener("cancel", (event) => {
+    event.preventDefault();
+});
+
+//doModal("open", "givenamebox");
 function closeapp() {
     ipcRenderer.send("app/close");
 }
@@ -16,17 +38,11 @@ function minimize() {
 }
 
 function startmmc() {
-    exec("multimc", { cwd: multimc }, (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
+    ipcRenderer.send("multimc/start");
+}
+
+function importmmc() {
+    ipcRenderer.send("modpack/install", "ampix");
 }
 
 ipcRenderer.on("selectdirback", (evt, name, mappa) => {
@@ -46,6 +62,11 @@ ipcRenderer.on("selectdirback", (evt, name, mappa) => {
         }
     }
 });
+
+ipcRenderer.on("console/error", (evt, text) => {
+    console.error(text);
+});
+
 ipcRenderer.on("showupdateinfo", (evt, name, log) => {
     hasupdate = true;
     let kacko = document.createElement("div");
@@ -75,6 +96,22 @@ ipcRenderer.on("edithtml", (evt, name, what, extra) => {
         document.getElementById(name).innerHTML = extra;
     }
 });
+
+ipcRenderer.on("reload", () => {
+    location.reload();
+});
+
+function hide(name) {
+    document.getElementById(name).classList.add("hide");
+}
+
+function show(name) {
+    document.getElementById(name).classList.remove("hide");
+}
+
+function status(name, extra) {
+    document.getElementById(name).innerHTML = extra;
+}
 
 function setfolder(type) {
     if (type === "multimc") {
@@ -204,8 +241,8 @@ function switchPage(pagee) {
         }
     }
 }
-function doModal(what) {
-    let modal = document.getElementById("updatebox");
+function doModal(what, to) {
+    let modal = document.getElementById(to);
     if (what === "open") {
         modal.showModal();
     }
@@ -217,55 +254,11 @@ function doModal(what) {
 
 async function installmmc() {
     let installo = document.getElementById("multi-folder").innerHTML;
-    if (!document.getElementById("multimcModeId").checked) {
-        hide("multi-base");
-        show("multi-install");
-        let progress = document.getElementById("multi-progfill");
-        var all = 0;
-        var current = 0;
-        status("multi-status", "Letöltés...");
-        var req = request({
-            method: "GET",
-            uri: "https://files.multimc.org/downloads/mmc-stable-win32.zip",
-        });
-        req.pipe(fs.createWriteStream(installo + "\\multimc.zip"));
-        req.on("response", function (data) {
-            all = data.headers["content-length"];
-        });
-        req.on("data", function (chunk) {
-            current += chunk.length;
-            var percent = (current * 100) / all;
-            progress.style.width = percent.toFixed(0) + "%";
-        });
-        req.on("end", async function () {
-            status("multi-status", "Kicsomagolás...");
-            decompress(installo + "\\multimc.zip", installo + "\\").then(async (files) => {
-                fs.rmSync(installo + "\\multimc.zip", {
-                    force: true,
-                });
-                fs.writeFile(configdir + "multimc.txt", installo, (err) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
-                mv(installo + "\\MultiMC", installo, { mkdirp: false, clobber: false }, function (err) {
-                    if (err) {
-                        throw err;
-                    } else {
-                        location.reload();
-                    }
-                });
-                fs.mkdirSync(installo + "\\instances");
-            });
-        });
-    } else {
-        fs.writeFile(configdir + "multimc.txt", installo, (err) => {
-            if (err) {
-                console.log(err);
-            }
-        });
-        location.reload();
-    }
+    ipcRenderer.send("multimc/install", installo, document.getElementById("multimcModeId").checked);
 }
+
+ipcRenderer.on("multimc/progress", (evt, progress) => {
+    document.getElementById("multi-progfill").style.width = progress;
+});
 
 ipcRenderer.send("setup");

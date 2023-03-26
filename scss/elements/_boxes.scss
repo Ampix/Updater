@@ -183,3 +183,59 @@
         cursor: pointer;
     }
 }
+
+.blueDialog {
+    margin: auto 20%;
+    border: #4fb9af solid 1px;
+    border-radius: 5px;
+    background-color: #00897b;
+    color: white;
+    text-align: center;
+    .submit {
+        background-color: #4fb9af;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+        font-size: larger;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 5px;
+        border: white 2px solid;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.5s;
+    }
+    .bbutton {
+        background-color: #4fb9af;
+        color: white;
+        border: solid 2.5px white;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 5px 15px;
+        transition: 0.25s;
+        font-weight: bolder;
+    }
+    .bbutton:hover {
+        background-color: #025043;
+        color: whitesmoke;
+    }
+    .button:hover {
+        background-color: #025043;
+        color: whitesmoke;
+    }
+    .name {
+        background-color: #222;
+        color: white;
+        border: #4fb9af 3px solid;
+    }
+}
+
+.blueDialog::backdrop {
+    background-color: #036c5f;
+    opacity: 0.25;
+}
+
+.error {
+    color: rgb(255, 48, 48);
+    text-shadow: black 1px 1px;
+}
