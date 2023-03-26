@@ -8,6 +8,8 @@ const { Octokit } = require("octokit");
 const fs = require("fs");
 const os = require("os");
 const username = os.userInfo().username;
+const { exec } = require("child_process");
+const operatingos = os.platform();
 var modpacks = [];
 var modpack_folders = [];
 var loaded_modpacks = [];
@@ -16,7 +18,19 @@ const request = require("request");
 const decompress = require("decompress");
 const https = require("https");
 var mv = require("mv");
-let configdir = "C:\\Users\\" + username + "\\AppData\\Roaming\\.ampixupdater\\";
+let configdir = false;
+let configdirfslash = false;
+
+switch (operatingos) {
+    case "win32":
+        configdir = "C:\\Users\\" + username + "\\AppData\\Roaming\\.ampixupdater\\";
+        configdirfslash = "C:/Users/" + username + "/AppData/Roaming/.ampixupdater/";
+        break;
+    case "linux":
+        configdir = `${os.userInfo().homedir}/Ampix/Updater`;
+        configdirfslash = `${os.userInfo().homedir}/Ampix/Updater`;
+        break;
+}
 
 const octokit = new Octokit({
     auth: "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",
@@ -57,6 +71,9 @@ ipcMain.on("selectdir", (event, name, title) => {
 });
 
 ipcMain.on("setup", () => {
+    modpacks = [];
+    modpack_folders = [];
+    loaded_modpacks = [];
     loadscripts();
 });
 
@@ -78,6 +95,57 @@ ipcMain.on("app/close", () => {
 
 ipcMain.on("app/minimize", () => {
     win.minimize();
+});
+
+ipcMain.on("multimc/install", (evt, loc, already) => {
+    if (!already) {
+        hide("multi-base");
+        show("multi-install");
+        status("multi-status", "Letöltés...");
+        var all = 0;
+        var current = 0;
+        var req = request({
+            method: "GET",
+            uri: "https://files.multimc.org/downloads/mmc-develop-win32.zip",
+        });
+        req.pipe(fs.createWriteStream(loc + "\\multimc.zip"));
+        req.on("response", function (data) {
+            all = data.headers["content-length"];
+        });
+        req.on("data", function (chunk) {
+            current += chunk.length;
+            var percent = (current * 100) / all;
+            win.webContents.send("multimc/progress", percent.toFixed(0) + "%");
+        });
+        req.on("end", async function () {
+            status("multi-status", "Kicsomagolás...");
+            decompress(loc + "\\multimc.zip", loc + "\\").then(async (files) => {
+                fs.rmSync(loc + "\\multimc.zip", {
+                    force: true,
+                });
+                fs.writeFile(configdir + "multimc.txt", loc, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                });
+                mv(loc + "\\MultiMC", loc, { mkdirp: false, clobber: false }, function (err) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        win.webContents.send("reload");
+                    }
+                });
+                fs.mkdirSync(loc + "\\instances");
+            });
+        });
+    } else {
+        fs.writeFile(configdir + "multimc.txt", installo, (err) => {
+            if (err) {
+                throw err;
+            }
+        });
+        win.webContents.send("reload");
+    }
 });
 
 async function createWindow() {
@@ -124,8 +192,10 @@ async function createWindow() {
 }
 
 app.whenReady().then(() => {
-    if (!fs.existsSync("C:\\Users\\" + username + "\\AppData\\Roaming\\.ampixupdater")) {
-        fs.mkdirSync("C:\\Users\\" + username + "\\AppData\\Roaming\\.ampixupdater");
+    if (configdir) {
+        if (!fs.existsSync(configdir)) {
+            fs.mkdirSync(configdir);
+        }
     }
     createWindow();
     if (!dev) autoUpdater.checkForUpdatesAndNotify();
@@ -213,39 +283,47 @@ function addhtml(target, to) {
     win.webContents.send("addhtml", target, to);
 }
 
+ipcMain.on("multimc/start", () => {
+    startmmc();
+});
+
 async function loadscripts() {
     // modpacks.forEach(loadmodpack);
     // getWarn();
     // modpack_folders = [];
-
-    https
-        .get("https://cdn.ampix.hu/updater/modpacks.json", (res) => {
-            let cucc = "";
-            res.on("data", (chunk) => {
-                cucc += chunk;
-            });
-            res.on("end", () => {
-                cucc = JSON.parse(cucc);
-                hide("loadbox");
-                fs.readFile(configdir + "multimc.txt", "utf8", function (err, filedata) {
-                    if (filedata) {
-                        multimc = filedata;
-                        show("verbox");
-                        canswitchpage = true;
-                        modpacks = cucc;
-                        modpack_folders = [];
-                        modpacks.name.forEach(loadmodpack);
-                    } else {
-                        show("multi-box");
-                        sethtml("multi-folder", configdir + "MultiMC");
-                        //setmultimc();
-                    }
+    if (!configdir || !configdirfslash) {
+        show("verbox");
+        sethtml("loadbox-text", "Nem támogatott operációs rendszer, a te " + os.platform() + " operációs rendszered nem támogatott.");
+    } else {
+        https
+            .get("https://cdn.ampix.hu/updater/modpacks.json", (res) => {
+                let cucc = "";
+                res.on("data", (chunk) => {
+                    cucc += chunk;
                 });
+                res.on("end", () => {
+                    cucc = JSON.parse(cucc);
+                    hide("loadbox");
+                    fs.readFile(configdir + "multimc.txt", "utf8", function (err, filedata) {
+                        if (filedata) {
+                            multimc = filedata;
+                            show("verbox");
+                            canswitchpage = true;
+                            modpacks = cucc;
+                            modpack_folders = [];
+                            modpacks.name.forEach(loadmodpack);
+                        } else {
+                            show("multi-box");
+                            sethtml("multi-folder", configdir + "MultiMC");
+                            //setmultimc();
+                        }
+                    });
+                });
+            })
+            .on("error", (err) => {
+                sethtml("loadbox-text", "Sikertelen csatlakozás a szerverre / Nincs internet");
             });
-        })
-        .on("error", (err) => {
-            sethtml("loadbox-text", "Sikertelen csatlakozás a szerverre / Nincs internet");
-        });
+    }
 }
 
 function loadmodpack(item) {
@@ -275,6 +353,20 @@ function loaderin() {
             loadbuttons(modpacks.name[i], "load");
         }
     }
+}
+
+function startmmc() {
+    exec("multimc", { cwd: multimc }, (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+    });
 }
 
 function loadbuttons(item, mode) {
@@ -378,6 +470,47 @@ function checkupdates(item, id) {
         });
     }
 }
+
+ipcMain.on("modpack/install", (evt, modpack) => {
+    let tempdir = configdirfslash + "temp";
+    let tempdirslash = configdir + "temp";
+    var req = request({
+        method: "GET",
+        uri: "https://cdn.ampix.hu/" + modpack + "/base.zip",
+    });
+    req.pipe(fs.createWriteStream(tempdirslash + "\\base.zip"));
+    req.on("response", function (data) {
+        all = data.headers["content-length"];
+    });
+    req.on("data", function (chunk) {
+        current += chunk.length;
+        var percent = (current * 100) / all;
+        progress.style.width = percent.toFixed(0) + "%";
+    });
+    req.on("end", async function () {
+        status("status-" + modpack, "Kicsomagolás...");
+        hide("progress-" + modpack);
+        decompress(tempdirslash + "\\base.zip", tempdirslash + "\\").then(async (files) => {
+            fs.rmSync(tempdirslash + "\\base.zip", {
+                force: true,
+            });
+            request("https://cdn.ampix.hu/" + modpack + "/ver.txt")
+                .pipe(fs.createWriteStream(tempdirslash + "\\ampixupdater\\ver.txt"))
+                .on("close", async function () {
+                    exec(`multimc --import "${tempdir + "/" + modpack}.zip"`, { cwd: multimc }, (error, stdout, stderr) => {
+                        if (error) {
+                            win.webContents.send("console/error", `error: ${error.message}`);
+                            return;
+                        }
+                        if (stderr) {
+                            win.webContents.send("console/error", `stderr: ${stderr}`);
+                            return;
+                        }
+                    });
+                });
+        });
+    });
+});
 
 function loadtext() {
     sethtml("settbox", "se");
