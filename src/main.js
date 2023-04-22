@@ -216,6 +216,24 @@ async function delpack(type) {
     }, 100);
 }
 
+var multimc_already = document.getElementById("multimcModeId");
+multimc_already.addEventListener("change", function () {
+    if (this.checked) {
+        hide("multimc_based");
+    } else {
+        show("multimc_based");
+    }
+});
+
+var multimc_based = document.getElementById("multimcBasedId");
+multimc_based.addEventListener("change", function () {
+    if (this.checked) {
+        hide("multimc_alreadyhave");
+    } else {
+        show("multimc_alreadyhave");
+    }
+});
+
 function sleep(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);

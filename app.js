@@ -102,6 +102,8 @@ ipcMain.on("multimc/install", (evt, loc, already) => {
         hide("multi-base");
         show("multi-install");
         status("multi-status", "Letöltés...");
+        var launchertype = "MultiMC";
+        fs.mkdir(loc, () => {});
         var all = 0;
         var current = 0;
         var req = request({
@@ -123,7 +125,7 @@ ipcMain.on("multimc/install", (evt, loc, already) => {
                 fs.rmSync(loc + "\\multimc.zip", {
                     force: true,
                 });
-                fs.writeFile(configdir + "multimc.txt", loc, (err) => {
+                fs.writeFile(configdir + "launcher.json", `{"name":"${launchertype}","location":"${loc}","command":"multimc.exe"}`, (err) => {
                     if (err) {
                         throw err;
                     }
@@ -304,9 +306,10 @@ async function loadscripts() {
                 res.on("end", () => {
                     cucc = JSON.parse(cucc);
                     hide("loadbox");
-                    fs.readFile(configdir + "multimc.txt", "utf8", function (err, filedata) {
+                    fs.readFile(configdir + "launcher.json", "utf8", function (err, filedata) {
                         if (filedata) {
-                            multimc = filedata;
+                            mindenas = JSON.parse(filedata);
+                            multimc = mindenas.location;
                             show("verbox");
                             canswitchpage = true;
                             modpacks = cucc;
@@ -365,7 +368,6 @@ function startmmc() {
             console.log(`stderr: ${stderr}`);
             return;
         }
-        console.log(`stdout: ${stdout}`);
     });
 }
 
