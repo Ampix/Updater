@@ -1,11 +1,7 @@
-# Ampix Updater
-Az Ampix Updater hivatalos repository-ja
+# Tauri + Svelte + Typescript
 
-# Mi ez
-Eddig az Updater-release nevű repositoryban lehetett letölteni az Ampix Updatert. Mostantól a v3.1.0-t követően ide lesznek felrakva a frissitések.
-Ne aggódj neked semmit nem kell tenned annak érdekében, hogy átáljon erre az Ampix Updater mivel a legfrissebb frissités az Updater-release-ben már ezt tartalmazza.
+This template should help get you started developing with Tauri, Svelte and TypeScript in Vite.
 
-# Dev
-Ez leginkább a fejlesztőknek van
-## .env
-GH_TOKEN=
+## Recommended IDE Setup
+
+[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
