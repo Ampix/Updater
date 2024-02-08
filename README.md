@@ -1,3 +1,9 @@
+[!WARNING]
+A main branchen található kód nem működik
+
+[!NOTE]  
+Az Updater fejlesztése megszűnt. Jelenleg készül az (Ampix App)[https://github.com/Ampix/App] ami ezt fogja leváltani.
+
 # Ampix Updater
 Az Ampix Updater hivatalos repository-ja
 
